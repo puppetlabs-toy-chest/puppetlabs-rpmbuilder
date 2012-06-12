@@ -1,0 +1,5 @@
+fixtures:
+  repositories:
+    https://github.com/stahnma/puppet-module-epel.git
+  symlinks:
+    rpmbuilder: "#{source_dir}"
