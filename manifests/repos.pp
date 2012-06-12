@@ -28,7 +28,7 @@ class rpmbuilder::repos {
   yumrepo { 'puppetlabs-products-source':
       baseurl         => "http://yum.puppetlabs.com/${baseurlOS}/${::os_maj_version}/SRPMS",
       failovermethod  => 'priority',
-      enabled         => '0',
+      enabled         => '1',
       gpgcheck        => '1',
       gpgkey          => 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs',
       descr           => "Puppet Labs Products ${::os_maj_version} - ${::architecture} - Source",
@@ -36,7 +36,7 @@ class rpmbuilder::repos {
 
   yumrepo { 'puppetlabs-deps-source':
       baseurl   => "http://yum.puppetlabs.com/${baseurlOS}/${::os_maj_version}/dependencies/SRPMS",
-      enabled   => '0',
+      enabled   => '1',
       gpgcheck  => '1',
       gpgkey    => 'http://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs',
       descr     => "Puppet Labs Source Dependencies ${::os_maj_version} - Source",
