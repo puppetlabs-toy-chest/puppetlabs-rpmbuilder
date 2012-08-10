@@ -13,8 +13,10 @@ packages for all of the previously stated distributions.
 
 ## Dependencies
 
-puppet-module-epel
+    Puppet 2.5.1 or higher
+    Facter 1.6.3 or higher
+    puppet-module-epel
 
 ## Recommended Modules
 
-puppet-module-mock
+    puppet-module-mock
