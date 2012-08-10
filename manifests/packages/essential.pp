@@ -18,7 +18,7 @@ class rpmbuilder::packages::essential {
      require => Class['rpmbuilder::repos'],
   }
   case $operatingsystem {
-    'CentOS': { }
+    /(CentOS|RedHat)/: { }
     'Fedora': {
         package { 'rpm-sign': ensure => latest }
     }
