@@ -3,6 +3,7 @@ class rpmbuilder::packages::essential {
   $builder_pkgs = [
     'createrepo',
     'fedora-packager',
+    'gnupg2',
     'make',
     'mock',
     'rpmdevtools',

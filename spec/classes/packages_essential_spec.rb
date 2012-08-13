@@ -7,6 +7,7 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
     packages = [
     'createrepo',
     'fedora-packager',
+    'gnupg2',
     'make',
     'mock',
     'rpmdevtools',
