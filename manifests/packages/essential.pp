@@ -1,8 +1,11 @@
 class rpmbuilder::packages::essential {
 
   $builder_pkgs = [
+    'autoconf',
+    'automake',
     'createrepo',
     'fedora-packager',
+    'gcc',
     'gnupg2',
     'make',
     'mock',
@@ -21,7 +24,7 @@ class rpmbuilder::packages::essential {
   case $operatingsystem {
     /(CentOS|RedHat)/: { }
     'Fedora': {
-        package { 'rpm-sign': ensure => latest }
+        package { 'rpm-sign': ensure => installed }
     }
   }
 }
