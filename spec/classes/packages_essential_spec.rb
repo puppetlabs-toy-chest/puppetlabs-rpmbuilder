@@ -5,8 +5,11 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
   context "Packages which should be installed on every OS" do
 
     packages = [
+    'autoconf',
+    'automake',
     'createrepo',
     'fedora-packager',
+    'gcc',
     'gnupg2',
     'make',
     'mock',
