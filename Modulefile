@@ -1,5 +1,5 @@
 name    'puppetlabs-rpmbuilder'
-version '0.0.1'
+version '0.0.2'
 source  'https://github.com/Whopper92/puppetlabs-rpmbuilder'
 author  'Puppet Labs'
 license 'Apache License 2.0'

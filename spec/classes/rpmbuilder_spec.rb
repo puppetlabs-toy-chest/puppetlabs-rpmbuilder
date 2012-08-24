@@ -12,9 +12,8 @@ describe 'rpmbuilder', :type => 'class' do
   context "Extra components that may be included" do
 
     let(:pre_condition) { 'class rpmbuilder::packages::extra {}' }
-    let(:pre_condition) { 'class mock {}' }
+    let(:pre_condition) { 'class mock::puppetlabs_mocks {}' }
     it { should include_class("rpmbuilder::packages::extra") }
-    it { should include_class("mock") }
-
+    it { should include_class("mock::puppetlabs_mocks") }
   end
 end
