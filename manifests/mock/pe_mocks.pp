@@ -1,7 +1,7 @@
-class rpmbuilder::mock::pe_config {
+class rpmbuilder::mock::pe_mocks {
 
   $mock_path = '/etc/mock'
-  Package['mock'] -> Rpmbuilder::Mock::Pe_mocks<| |>
+  Package['mock'] -> Rpmbuilder::Mock::Pe_config<| |>
 
   rpmbuilder::mock::pe_config { 'pupent-1.1-el4-i386-cve.cfg':
     config             => "${mock_path}/pupent-1.1-el4-i386-cve.cfg",

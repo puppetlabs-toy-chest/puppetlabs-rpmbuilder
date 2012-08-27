@@ -1,12 +1,8 @@
 require 'spec_helper'
 
-describe 'rpmbuilder::mock::pe_config', :type => 'class' do
+describe 'rpmbuilder::mock::pe_mocks', :type => 'class' do
 
   context 'Each Puppet Labs Enterprise mock configuration file should be present' do
-
-  let(:pre_condition) do
-    'package { "mock": ensure => present }'
-  end
 
   configs = [
     'pupent-1.1-el4-i386-cve.cfg',
@@ -42,7 +38,7 @@ describe 'rpmbuilder::mock::pe_config', :type => 'class' do
   ]
 
     configs.each do|config|
-      it { should contain_Pe_mock__Config("#{config}")  }
+      it { should contain_Rpmbuilder__mock__Pe_config("#{config}")  }
     end
   end
 end

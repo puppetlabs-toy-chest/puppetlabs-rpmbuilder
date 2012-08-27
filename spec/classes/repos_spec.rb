@@ -12,13 +12,13 @@ describe 'rpmbuilder::repos', :type => 'class' do
 
     it {
       should contain_yumrepo('puppetlabs-products').with( 
-      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/#{facts[:os_maj_version]}/products/#{facts[:architecture]}" } )
+      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/f#{facts[:os_maj_version]}/products/#{facts[:architecture]}" } )
       should contain_yumrepo('puppetlabs-deps').with( 
-      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/#{facts[:os_maj_version]}/dependencies/#{facts[:architecture]}" } )
+      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/f#{facts[:os_maj_version]}/dependencies/#{facts[:architecture]}" } )
        should contain_yumrepo('puppetlabs-products-source').with( 
-      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/#{facts[:os_maj_version]}/SRPMS" } )
+      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/f#{facts[:os_maj_version]}/products/SRPMS" } )
        should contain_yumrepo('puppetlabs-deps-source').with( 
-      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/#{facts[:os_maj_version]}/dependencies/SRPMS" } )
+      { 'baseurl' => "http://yum.puppetlabs.com/#{baseurlOS}/f#{facts[:os_maj_version]}/dependencies/SRPMS" } )
     }
 
   end
