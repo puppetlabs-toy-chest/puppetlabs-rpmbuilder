@@ -25,7 +25,7 @@ define rpmbuilder::mock::pe_config (
       mode    => '0644',
       owner   => 'root',
       group   => 'root',
-      content => template("pe_mock/pupent-mock-config.erb"),
+      content => template("rpmbuilder/pupent-mock-config.erb"),
       require => Package['mock'],
     }
 }

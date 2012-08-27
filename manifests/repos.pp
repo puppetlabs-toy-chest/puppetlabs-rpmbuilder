@@ -2,15 +2,16 @@ class rpmbuilder::repos {
 
   case $operatingsystem {
     'fedora': {
-      $baseurlOS      = 'fedora'
+      $baseurlOS  = 'fedora'
       $os_version = $os_maj_version ? {
-        '15' => 'f15',
-        '16' => 'f16',
-        '17' => 'f17',
+        '15'    => 'f15',
+        '16'    => 'f16',
+        '17'    => 'f17',
+	default => undef,
       }
     }
     default: {
-      $baseurlOS = 'el'
+      $baseurlOS  = 'el'
       $os_version = $os_maj_version
     }
   }

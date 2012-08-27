@@ -6,7 +6,7 @@ describe 'rpmbuilder::mock::pl_config', :type => 'define' do
   context 'Given some parameters, a configuration should be created' do
 
     let(:params) {{
-      :config               => '/etc/mock/pl-5-i386.cfg',
+      :config               => '/etc/mock/pl-5-i386.cfg-test',
       :build_root           => 'pl-5-i386',
       :target_arch          => 'i386',
       :dist                 => 'el5',

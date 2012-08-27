@@ -21,7 +21,7 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
     'yum-utils',]
 
     packages.each do|pkg|
-      it { should contain_package("#{pkg}").with_ensure('latest') }
+      it { should contain_package("#{pkg}").with_ensure('installed') }
     end
 
   end
@@ -31,7 +31,7 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
 
     packages = ['rpm-sign']
     packages.each do|pkg|
-       it { should contain_package("#{pkg}").with_ensure('latest') }
+       it { should contain_package("#{pkg}").with_ensure('installed') }
     end
   end
 end
