@@ -18,7 +18,7 @@ class rpmbuilder::packages::essential {
   ]
 
   package { $builder_pkgs:
-     ensure  => latest,
+     ensure  => installed,
      require => Class['rpmbuilder::repos'],
   }
   case $operatingsystem {

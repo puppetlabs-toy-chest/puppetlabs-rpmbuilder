@@ -1,4 +1,4 @@
-class mock::puppetlabs_mocks {
+class rpmbuilder::mock::puppetlabs_mocks {
 
   $mock_path = '/etc/mock'
 
