@@ -7,7 +7,7 @@ class rpmbuilder::repos {
         '15'    => 'f15',
         '16'    => 'f16',
         '17'    => 'f17',
-	default => undef,
+        default => undef,
       }
     }
     default: {
