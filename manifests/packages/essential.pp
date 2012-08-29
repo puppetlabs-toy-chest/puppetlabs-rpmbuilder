@@ -6,13 +6,14 @@ class rpmbuilder::packages::essential {
     'createrepo',
     'fedora-packager',
     'gcc',
-    'gnupg2',
+    'gnupg',
     'make',
     'mock',
     'rpmdevtools',
     'rpm-libs',
     'rubygem-gem2rpm',
     'rubygem-rake',
+    'rubygem-rspec',
     'yum',
     'yum-utils',
   ]
@@ -25,6 +26,7 @@ class rpmbuilder::packages::essential {
     /(CentOS|RedHat)/: { }
     'Fedora': {
         package { 'rpm-sign': ensure => installed }
+        package { 'keychain': ensure  => installed }
     }
   }
 }
