@@ -10,13 +10,14 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
     'createrepo',
     'fedora-packager',
     'gcc',
-    'gnupg2',
+    'gnupg',
     'make',
     'mock',
     'rpmdevtools',
     'rpm-libs',
     'rubygem-gem2rpm',
     'rubygem-rake',
+    'rubygem-rspec',
     'yum',
     'yum-utils',]
 
@@ -29,7 +30,10 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
   context "On a Fedora OS" do
     let(:facts) {{ :operatingsystem => 'fedora' }}
 
-    packages = ['rpm-sign']
+    packages = [
+    'rpm-sign',
+    'keychain',]
+
     packages.each do|pkg|
        it { should contain_package("#{pkg}").with_ensure('installed') }
     end
