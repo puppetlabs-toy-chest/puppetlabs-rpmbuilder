@@ -119,8 +119,8 @@ class rpmbuilder::mock::puppetlabs_mocks {
     build_root            => 'pl-fc15-i386',
     target_arch           => 'i686',
     dist                  => 'fc15',
-    base_mirrorlist       => 'http://mirrors.cat.pdx.edu/fedora/linux/releases/15/Fedora/i386/os/',
-    updates_mirrorlist    => 'http://mirrors.cat.pdx.edu/fedora/linux/updates/15/i386',
+    base_repo_baseurl     => 'http://mirrors.cat.pdx.edu/fedora/linux/releases/15/Fedora/i386/os/',
+    updates_repo_baseurl  => 'http://mirrors.cat.pdx.edu/fedora/linux/updates/15/i386',
     puppet_prod_baseurl   => 'http://yum.puppetlabs.com/fedora/f15/products/i386/',
     puppet_deps_baseurl   => 'http://yum.puppetlabs.com/fedora/f15/dependencies/i386/',
   }
