@@ -1,6 +1,28 @@
-class rpmbuilder {
+class rpmbuilder(
+  $fedora_releases  = undef,
+  $el_releases      = undef,
+  $vendor           = undef,
+  $mock_root        = undef,
+  $proxy            = undef,
+  $pe               = false,
+  $pe_vers          = undef,
+) {
   include rpmbuilder::repos
   include rpmbuilder::packages::essential
-  include rpmbuilder::packages::extra
-  include rpmbuilder::mock::puppetlabs_mocks
+
+  class { rpmbuilder::mock::puppetlabs_mocks:
+    fedora_releases   => $fedora_releases,
+    el_releases       => $el_releases,
+    vendor            => $vendor,
+    proxy             => $proxy,
+    mock_root         => $mock_root,
+  }
+
+  if $pe {
+    include rpmbuilder::packages::extra
+    class { rpmbuilder::mock::pe_mocks:
+      pe_vers   => $pe_vers,
+      mock_root => $mock_root,
+    }
+  }
 }

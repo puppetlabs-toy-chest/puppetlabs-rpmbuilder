@@ -18,7 +18,7 @@ class rpmbuilder::repos {
 
   if $::osfamily == 'RedHat' and $::operatingsystem != 'Fedora' {
     include epel
-   }
+  }
 
   yumrepo { 'puppetlabs-products':
       baseurl   => "http://yum.puppetlabs.com/${baseurlOS}/${os_version}/products/${::architecture}",

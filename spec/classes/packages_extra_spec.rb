@@ -12,7 +12,7 @@ describe 'rpmbuilder::packages::extra', :type => 'class' do
     ]
 
     packages.each do|pkg|
-      it { should contain_package("#{pkg}").with_ensure('installed').with_require('Class[Rpmbuilder::Repos]') }
+      it { should contain_package(pkg).with_ensure('installed').with_require('Class[Rpmbuilder::Repos]') }
     end
   end
 end
