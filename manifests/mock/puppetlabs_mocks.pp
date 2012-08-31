@@ -216,7 +216,7 @@ class rpmbuilder::mock::puppetlabs_mocks {
     updates_mirrorlist       => 'http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f17&arch=i386',
     updates_debug_mirrorlist => 'http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-debug-f17&arch=i386',
     puppet_prod_baseurl      => 'http://yum.puppetlabs.com/fedora/f17/products/i386/',
-    puppet_deps_baseurl      => 'http://yum.puppetlabs.com/fedora/f17/dependencies/',
+    puppet_deps_baseurl      => 'http://yum.puppetlabs.com/fedora/f17/dependencies/i386/',
   }
 
   rpmbuilder::mock::pl_config { 'pl-fc17-i386-dev.cfg':
