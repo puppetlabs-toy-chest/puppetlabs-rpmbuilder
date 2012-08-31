@@ -188,8 +188,8 @@ class rpmbuilder::mock::puppetlabs_mocks {
     build_root            => 'pl-fc16-x86_64',
     target_arch           => 'x86_64',
     dist                  => 'fc16',
-    base_mirrorlist       => 'http://mirrors.cat.pdx.edu/fedora/linux/releases/16/Fedora/x86_64/os/',
-    updates_mirrorlist    => 'http://mirrors.cat.pdx.edu/fedora/linux/updates/16/x86_64',
+    base_repo_baseurl     => 'http://mirrors.cat.pdx.edu/fedora/linux/releases/16/Fedora/x86_64/os/',
+    updates_repo_baseurl  => 'http://mirrors.cat.pdx.edu/fedora/linux/updates/16/x86_64',
     puppet_prod_baseurl   => 'http://yum.puppetlabs.com/fedora/f16/products/x86_64/',
     puppet_deps_baseurl   => 'http://yum.puppetlabs.com/fedora/f16/dependencies/x86_64/',
   }
