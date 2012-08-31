@@ -162,7 +162,7 @@ class rpmbuilder::mock::puppetlabs_mocks {
 
   rpmbuilder::mock::pl_config { 'pl-fc16-i386.cfg':
     config                => "${mock_path}/pl-fc16-i386.cfg",
-    build_root            => 'fedora-16-i386',
+    build_root            => 'pl-fc16-i386',
     target_arch           => 'i386',
     dist                  => 'fc16',
     base_repo_baseurl     => 'http://mirrors.cat.pdx.edu/fedora/linux/releases/16/Fedora/i386/os/',
@@ -196,7 +196,7 @@ class rpmbuilder::mock::puppetlabs_mocks {
 
   rpmbuilder::mock::pl_config { 'pl-fc16-x86_64-dev.cfg':
     config                => "${mock_path}/pl-fc16-x86_64-dev.cfg",
-    build_root            => 'fedora-17-x86_64',
+    build_root            => 'pl-fc17-x86_64',
     target_arch           => 'x86_64',
     dist                  => 'fc16',
     base_mirrorlist       => 'http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-16&arch=x86_64',
