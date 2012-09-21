@@ -8,6 +8,7 @@ describe 'rpmbuilder::packages::extra', :type => 'class' do
       'mlocate',
       'nfs-utils',
       's3cmd',
+      'rubygem-pg',
     ]
 
     packages.each do|pkg|
