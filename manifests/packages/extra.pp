@@ -4,6 +4,7 @@ class rpmbuilder::packages::extra {
     'mlocate',
     'nfs-utils',
     's3cmd',
+    'rubygem-pg'
   ]
   package { $builder_pkgs:
     ensure => installed,
