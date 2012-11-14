@@ -1,4 +1,7 @@
 class rpmbuilder::packages::essential {
+  Package {
+    require  => Class['rpmbuilder::repos']
+  }
 
   $builder_pkgs = [
     'autoconf',
@@ -6,7 +9,7 @@ class rpmbuilder::packages::essential {
     'createrepo',
     'fedora-packager',
     'gcc',
-    'gnupg',
+    'gnupg2',
     'make',
     'mock',
     'rpmdevtools',
@@ -20,14 +23,11 @@ class rpmbuilder::packages::essential {
 
   package { $builder_pkgs:
      ensure  => installed,
-     require => Class['rpmbuilder::repos'],
   }
+
   case $operatingsystem {
-    /(CentOS|RedHat)/: { }
     'Fedora': {
-        package { 'rpm-sign': ensure => installed }
-        package { 'keychain': ensure  => installed }
+      package { 'rpm-sign': ensure => installed }
     }
   }
 }
-
