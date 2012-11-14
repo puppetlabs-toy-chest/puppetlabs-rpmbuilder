@@ -7,7 +7,7 @@
 config_opts['root'] = '<%=name%>'
 config_opts['target_arch'] = '<%=arch%>'
 config_opts['legal_host_arches'] = (<%= if arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "x86_64" end %>)
-config_opts['chroot_setup_cmd'] = 'install bash bzip2 coreutils cpio curl cvs diffutils fedpkg findutils gawk gcc gcc-c++ gnupg grep gzip info make patch redhat-release redhat-release-server redhat-rpm-config rpm-build sed shadow-utils tar unzip util-linux-ng which xz buildsys-macros'
+config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 config_opts['dist'] = '<%=dist%><%=release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
 config_opts['macros']['%dist'] = '.<%=dist%><%=release%>'
@@ -45,4 +45,10 @@ enabled=1
 baseurl=http://neptune.puppetlabs.lan/<%=pe_ver%>/repos/<%=dist%>-<%=release%>-<%=arch%>/
 skip_if_unavailable=1
 proxy=_none_
+
+[epel]
+name=epel
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=release%>&arch=<%=arch%>
+failovermethod=priority
+includepkgs=ccache
 """
