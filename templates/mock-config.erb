@@ -1,0 +1,70 @@
+<%
+  # Set up internal variables for fedora and centos mirrors, which vary greatly in format.
+  if dist == "fedora"
+    tag = "fc"
+    prefix = "f"
+    mirrorlist_os = "http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-#{release}&arch=#{arch}"
+    mirrorlist_updates = "http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f#{release}&arch=#{arch}"
+  elsif dist == "el"
+    tag = "el"
+    mirrorlist_os = "http://mirrorlist.centos.org/?release=#{release}&arch=#{arch}&repo=os"
+    mirrorlist_updates = "http://mirrorlist.centos.org/?release=#{release}&arch=#{arch}&repo=updates"
+  end
+%>
+
+config_opts['root'] = '<%=name%>'
+config_opts['target_arch'] = '<%=arch%>'
+config_opts['legal_host_arches'] = (<%= if arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "x86_64" end %>)
+config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+config_opts['dist'] = '<%=dist%>'  # only useful for --resultdir variable subst
+config_opts['macros']['%_host_vendor'] = '<%=vendor%>'
+<% if dist == "el" and release.to_i == 5 %>
+config_opts['macros']['%dist'] = '.<%=dist%><%=release%>'
+<% end %>
+
+config_opts['yum.conf'] = """
+[main]
+cachedir=/var/cache/yum
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+proxy=<%=proxy%>
+
+# OS Repo
+[<%=dist%>-<%=release%>-<%=arch%>-os]
+name=<%=dist%>-<%=release%>-<%=arch%>-os
+mirrorlist=<%=mirrorlist_os%>
+failovermethod=priority
+
+# Updates Repo
+[<%=dist%>-<%=release%>-<%=arch%>-updates]
+name=<%=dist%>-<%=release%>-<%=arch%>-updates
+mirrorlist=<%=mirrorlist_updates%>
+failovermethod=priority
+
+# Puppetlabs Products
+[puppetlabs-products]
+name=yum.puppetlabs-products
+baseurl=http://yum.puppetlabs.com/<%=dist%>/<%=prefix%><%=release%>/products/<%=arch%>/
+enabled=1
+
+# Puppetlabs Dependencies
+[puppetlabs-dependencies]
+name=yum.puppetlabs-dependencies
+baseurl=http://yum.puppetlabs.com/<%=dist%>/<%=prefix%><%=release%>/dependencies/<%=arch%>/
+enabled=1
+
+<% if dev == true %>
+# Puppetlabs Development
+[puppetlabs-devel]
+name=yum.puppetlabs-devel
+baseurl=http://yum.puppetlabs.com/<%=dist%>/<%=prefix%><%=release%>/devel/<%=arch%>/
+enabled=1
+<% end %>
+"""

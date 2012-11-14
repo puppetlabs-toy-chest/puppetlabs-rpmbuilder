@@ -2,43 +2,41 @@ require 'spec_helper'
 
 describe 'rpmbuilder::mock::pe_mocks', :type => 'class' do
 
-  context 'Each Puppet Labs Enterprise mock configuration file should be present' do
+  [{
+    :pe_vers    => ["1.2","2.0","2.5","2.6","2.7"],
+    :mock_root  => "/etc/mock",
+  },
+  {
+    :pe_vers    => ["2.8","2.9"],
+    :mock_root  => "/opt/mock",
+  }].each do |param_set|
+    describe "when #{param_set[:mock_root] == "/etc/mock" ? "using default params" : "specifying parameters"}" do
+      context 'Each Puppet Labs Enterprise mock configuration file should be present' do
 
-  configs = [
-    'pupent-1.1-el4-i386-cve.cfg',
-    'pupent-1.1-el4-x86_64-cve.cfg',
-    'pupent-1.1-el5-i386-cve.cfg',
-    'pupent-1.1-el5-x86_64-cve.cfg',
-    'pupent-1.1-el6-i386-cve.cfg',
-    'pupent-1.1-el6-x86_64-cve.cfg',
-    'pupent-1.2-el4-i386-cve.cfg',
-    'pupent-1.2-el4-x86_64-cve.cfg',
-    'pupent-1.2-el5-i386-cve.cfg',
-    'pupent-1.2-el5-x86_64-cve.cfg',
-    'pupent-1.2-el6-i386-cve.cfg',
-    'pupent-1.2-el6-x86_64-cve.cfg',
-    'pupent-2.0-el4-i386-cve.cfg',
-    'pupent-2.0-el4-x86_64-cve.cfg',
-    'pupent-2.0-el5-i386-cve.cfg',
-    'pupent-2.0-el5-x86_64-cve.cfg',
-    'pupent-2.0-el6-i386-cve.cfg',
-    'pupent-2.0-el6-x86_64-cve.cfg',
-    'pupent-el4-i386.cfg',
-    'pupent-el4-x86_64.cfg',
-    'pupent-el5-i386.cfg',
-    'pupent-el5-x86_64.cfg',
-    'pupent-el6-i386.cfg',
-    'pupent-el6-x86_64.cfg',
-    'pupent-extras-el5-i386.cfg',
-    'pupent-extras-el5-x86_64.cfg',
-    'pupent-extras-el6-i386.cfg',
-    'pupent-extras-el6-x86_64.cfg',
-    'pupent-fc15-i386.cfg',
-    'pupent-fc15-x86_64.cfg'
-  ]
+        let(:params) do
+          param_set
+        end
 
-    configs.each do|config|
-      it { should contain_Rpmbuilder__mock__Pe_config("#{config}")  }
+        param_set[:pe_vers].each do | pe_mock |
+          it do should contain_Rpmbuilder__mock__pe_mockset(pe_mock).with({
+            :mock_root  => param_set[:mock_root],
+          })
+          end
+        end
+
+        [5,6].each do |rel|
+          ["i386","x86_64"].each do |arch|
+            describe "Should have an extras config for el#{rel.to_s}-#{arch}" do
+              it { should contain_Rpmbuilder__mock__Pe_Mock("pupent-extras-el#{rel.to_s}-#{arch}").with({
+                :pe_ver     => "2.5",
+                :arch       => arch,
+                :release    => rel.to_s,
+                :mock_root  => param_set[:mock_root],
+              })}
+            end
+          end
+        end
+      end
     end
   end
 end
