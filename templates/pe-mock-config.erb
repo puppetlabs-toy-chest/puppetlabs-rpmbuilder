@@ -4,13 +4,13 @@
 # Managed by Puppet
 # **********************************
 
-config_opts['root'] = '<%=name-%>'
-config_opts['target_arch'] = '<%=arch-%>'
+config_opts['root'] = '<%=name%>'
+config_opts['target_arch'] = '<%=arch%>'
 config_opts['legal_host_arches'] = (<%= if arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "x86_64" end %>)
 config_opts['chroot_setup_cmd'] = 'install bash bzip2 coreutils cpio curl cvs diffutils fedpkg findutils gawk gcc gcc-c++ gnupg grep gzip info make patch redhat-release redhat-release-server redhat-rpm-config rpm-build sed shadow-utils tar unzip util-linux-ng which xz buildsys-macros'
-config_opts['dist'] = '<%=dist-%><%=release-%>'  # only useful for --resultdir variable subst
+config_opts['dist'] = '<%=dist%><%=release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
-config_opts['macros']['%dist'] = '.<%=dist-%><%=release-%>'
+config_opts['macros']['%dist'] = '.<%=dist%><%=release%>'
 config_opts['yum.conf'] = """
 
 [main]
@@ -28,21 +28,21 @@ proxy=http://modi.puppetlabs.lan:3128/
 
 # repos
 [os]
-name=centos<%=release-%>-<%=arch-%>-os
+name=centos<%=release%>-<%=arch%>-os
 enabled=1
-mirrorlist=http://mirrorlist.centos.org/?release=<%=release-%>&arch=<%=arch-%>&repo=os
-baseurl=http://yo.puppetlabs.lan/cent<%=release-%>latestserver-<%=arch-%>/RPMS.os/
+mirrorlist=http://mirrorlist.centos.org/?release=<%=release%>&arch=<%=arch%>&repo=os
+baseurl=http://yo.puppetlabs.lan/cent<%=release%>latestserver-<%=arch%>/RPMS.os/
 
 [updates]
-name=centos<%=release-%>-<%=arch-%>-updates
+name=centos<%=release%>-<%=arch%>-updates
 enabled=0
-mirrorlist=http://mirrorlist.centos.org/?release=<%=release-%>&arch=<%=arch-%>&repo=updates
-baseurl=http://yo.puppetlabs.lan/cent<%=release-%>latestserver-<%=arch-%>/RPMS.updates/
+mirrorlist=http://mirrorlist.centos.org/?release=<%=release%>&arch=<%=arch%>&repo=updates
+baseurl=http://yo.puppetlabs.lan/cent<%=release%>latestserver-<%=arch%>/RPMS.updates/
 
 [pe]
 name=pe
 enabled=1
-baseurl=http://neptune.puppetlabs.lan/<%=pe_ver-%>/repos/<%=dist-%>-<%=release-%>-<%=arch-%>/
+baseurl=http://neptune.puppetlabs.lan/<%=pe_ver%>/repos/<%=dist%>-<%=release%>-<%=arch%>/
 skip_if_unavailable=1
 proxy=_none_
 """

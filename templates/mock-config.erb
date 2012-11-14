@@ -37,14 +37,14 @@ syslog_device=
 proxy=<%=proxy%>
 
 # OS Repo
-[<%="#{dist}-#{release}-#{arch}" %>-os]
-name=<%="#{dist}-#{release}-#{arch}" %>-os
+[<%=dist%>-<%=release%>-<%=arch%>-os]
+name=<%=dist%>-<%=release%>-<%=arch%>-os
 mirrorlist=<%=mirrorlist_os%>
 failovermethod=priority
 
 # Updates Repo
-[<%="#{dist}-#{release}-#{arch}" %>-updates]
-name=<%="#{dist}-#{release}-#{arch}" %>-updates
+[<%=dist%>-<%=release%>-<%=arch%>-updates]
+name=<%=dist%>-<%=release%>-<%=arch%>-updates
 mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
 
