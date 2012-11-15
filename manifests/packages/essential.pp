@@ -1,6 +1,6 @@
 class rpmbuilder::packages::essential {
   Package {
-    require  => Class['rpmbuilder::repos']
+    require  => Class['epel']
   }
 
   $builder_pkgs = [

@@ -1,5 +1,5 @@
 name    'puppetlabs-rpmbuilder'
-version '0.0.2'
+version '0.0.3'
 source  'https://github.com/Whopper92/puppetlabs-rpmbuilder'
 author  'Puppet Labs'
 license 'Apache License 2.0'
@@ -9,3 +9,4 @@ project_page 'https://github.com/Whopper92/puppetlabs-rpmbuilder'
 
 ## Add dependencies, if any:
 dependency 'stahnma/puppet-module-epel', '>= 0.0.1'
+dependency 'stahnma/puppet-module-puppetlabs_yum', '>= 0.1.0'

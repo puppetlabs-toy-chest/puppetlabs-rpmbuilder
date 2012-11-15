@@ -10,6 +10,7 @@ describe 'rpmbuilder', :type => 'class' do
       :proxy            => nil,
       :pe               => false,
       :pe_vers          => nil,
+      :add_pl_repos     => true,
     }
   end
 
@@ -22,6 +23,7 @@ describe 'rpmbuilder', :type => 'class' do
       :proxy            => "http://proxy.puppetlabs.com:1234",
       :pe               => true,
       :pe_vers          => ["1.2","lance"],
+      :add_pl_repos     => false,
    }].each do |param_set|
     let(:param_hash) do
       default_params.merge(param_set)
@@ -32,7 +34,14 @@ describe 'rpmbuilder', :type => 'class' do
     end
 
     describe "Using #{param_set == {} ? "default params" : "specifying params"}" do
-      it { should contain_Rpmbuilder__Repos }
+      it do
+        if param_hash[:add_pl_repos]
+          should contain_Puppetlabs_yum
+        else
+          should_not contain_Puppetlabs_yum
+        end
+      end
+
       it { should contain_Rpmbuilder__Packages__Essential }
 
       it { should contain_Rpmbuilder__Mock__Puppetlabs_Mocks.with({
