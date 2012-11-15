@@ -6,8 +6,9 @@ class rpmbuilder::packages::extra {
     's3cmd',
     'rubygem-pg'
   ]
+
   package { $builder_pkgs:
     ensure => installed,
     require => Class['epel'],
-   }
+  }
 }
