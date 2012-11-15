@@ -8,6 +8,6 @@ class rpmbuilder::packages::extra {
   ]
   package { $builder_pkgs:
     ensure => installed,
-    require => Class['rpmbuilder::repos'],
+    require => Class['epel'],
    }
 }

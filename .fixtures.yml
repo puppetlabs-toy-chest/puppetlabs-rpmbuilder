@@ -1,5 +1,6 @@
 fixtures:
   repositories:
     epel: https://github.com/stahnma/puppet-module-epel.git
+    puppetlabs_yum: https://github.com/stahnma/puppet-module-puppetlabs_yum.git
   symlinks:
     rpmbuilder: "#{source_dir}"

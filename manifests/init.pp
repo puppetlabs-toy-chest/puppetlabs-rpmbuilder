@@ -6,8 +6,12 @@ class rpmbuilder(
   $proxy            = undef,
   $pe               = false,
   $pe_vers          = undef,
+  $add_pl_repos     = true,
 ) {
-  include rpmbuilder::repos
+  if $add_pl_repos {
+    include puppetlabs_yum
+  }
+  include epel
   include rpmbuilder::packages::essential
 
   class { rpmbuilder::mock::puppetlabs_mocks:
