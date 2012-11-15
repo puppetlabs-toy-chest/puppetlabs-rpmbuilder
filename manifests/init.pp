@@ -23,7 +23,6 @@ class rpmbuilder(
   }
 
   if $pe {
-    include rpmbuilder::packages::extra
     class { rpmbuilder::mock::pe_mocks:
       pe_vers   => $pe_vers,
       mock_root => $mock_root,
