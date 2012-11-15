@@ -55,7 +55,6 @@ describe 'rpmbuilder', :type => 'class' do
 
       it do
         if param_hash[:pe]
-          should contain_Rpmbuilder__Packages__Extra
           should contain_Rpmbuilder__Mock__Pe_mocks.with({
             :pe_vers      => param_hash[:pe_vers],
             :mock_root    => param_hash[:mock_root],
