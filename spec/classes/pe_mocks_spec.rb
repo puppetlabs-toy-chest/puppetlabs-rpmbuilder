@@ -7,7 +7,7 @@ describe 'rpmbuilder::mock::pe_mocks', :type => 'class' do
     :mock_root  => "/etc/mock",
   },
   {
-    :pe_vers    => ["2.8","2.9"],
+    :pe_vers    => ["2.8","2.9","3.0"],
     :mock_root  => "/opt/mock",
   }].each do |param_set|
     describe "when #{param_set[:mock_root] == "/etc/mock" ? "using default params" : "specifying parameters"}" do
