@@ -7,7 +7,7 @@ class rpmbuilder(
   $pe                 = false,
   $pe_vers            = undef,
   $add_pl_repos       = true,
-  $use_extra_packages = true,
+  $use_extra_packages = false,
 ) {
   if $add_pl_repos {
     include puppetlabs_yum
