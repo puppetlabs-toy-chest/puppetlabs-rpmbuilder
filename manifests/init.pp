@@ -9,6 +9,9 @@ class rpmbuilder(
   $add_pl_repos       = true,
   $use_extra_packages = false,
 ) {
+  
+  Class['Rpmbuilder::Packages::Essential']->Class['Rpmbuilder::Mock::Puppetlabs_mocks']
+
   if $add_pl_repos {
     include puppetlabs_yum
   }
