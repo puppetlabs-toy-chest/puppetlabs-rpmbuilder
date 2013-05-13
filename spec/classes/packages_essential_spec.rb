@@ -17,7 +17,6 @@ describe 'rpmbuilder::packages::essential', :type => 'class' do
     'rpm-libs',
     'rubygem-gem2rpm',
     'rubygem-rake',
-    'rubygem-rspec',
     'yum',
     'yum-utils',]
 
