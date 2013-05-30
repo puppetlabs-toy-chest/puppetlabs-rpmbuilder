@@ -24,8 +24,11 @@ config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 config_opts['dist'] = '<%=dist%>'  # only useful for --resultdir variable subst
 config_opts['macros']['%_host_vendor'] = '<%=vendor%>'
 
-<% if dist == "el" and release.to_i == 5 %>
+<% if dist == "el" %>
+config_opts['macros']['%rhel'] = '<%=release%>'
+  <% if release.to_i == 5 %>
 config_opts['macros']['%dist'] = '.<%=dist%><%=release%>'
+  <% end %>
 <% end %>
 
 config_opts['yum.conf'] = """
