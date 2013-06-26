@@ -1,33 +1,33 @@
 # **********************************
 # Puppet Labs mock configuration
-# <%=name%>
+# <%=@name%>
 # Managed by Puppet
 # **********************************
 <%
   # Set up internal variables for fedora and centos mirrors, which vary greatly in format.
-  if dist == "fedora"
+  if @dist == "fedora"
     tag = "fc"
     prefix = "f"
-    mirrorlist_os = "http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-#{release}&arch=#{arch}"
-    mirrorlist_updates = "http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f#{release}&arch=#{arch}"
-  elsif dist == "el"
+    mirrorlist_os = "http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-#{@release}&arch=#{@arch}"
+    mirrorlist_updates = "http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f#{@release}&arch=#{@arch}"
+  elsif @dist == "el"
     tag = "el"
-    mirrorlist_os = "http://mirrorlist.centos.org/?release=#{release}&arch=#{arch}&repo=os"
-    mirrorlist_updates = "http://mirrorlist.centos.org/?release=#{release}&arch=#{arch}&repo=updates"
+    mirrorlist_os = "http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=os"
+    mirrorlist_updates = "http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=updates"
   end
 %>
 
-config_opts['root'] = '<%=name%>'
-config_opts['target_arch'] = '<%=arch%>'
-config_opts['legal_host_arches'] = (<%= if arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
+config_opts['root'] = '<%=@name%>'
+config_opts['target_arch'] = '<%=@arch%>'
+config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
-config_opts['dist'] = '<%=dist%>'  # only useful for --resultdir variable subst
-config_opts['macros']['%_host_vendor'] = '<%=vendor%>'
+config_opts['dist'] = '<%=@dist%>'  # only useful for --resultdir variable subst
+config_opts['macros']['%_host_vendor'] = '<%=@vendor%>'
 
-<% if dist == "el" %>
-config_opts['macros']['%rhel'] = '<%=release%>'
-  <% if release.to_i == 5 %>
-config_opts['macros']['%dist'] = '.<%=dist%><%=release%>'
+<% if @dist == "el" %>
+config_opts['macros']['%rhel'] = '<%=@release%>'
+  <% if @release.to_i == 5 %>
+config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
   <% end %>
 <% end %>
 
@@ -43,44 +43,44 @@ gpgcheck=0
 assumeyes=1
 syslog_ident=mock
 syslog_device=
-proxy=<%=proxy%>
+proxy=<%=@proxy%>
 
 # OS Repo
-[<%=dist%>-<%=release%>-<%=arch%>-os]
-name=<%=dist%>-<%=release%>-<%=arch%>-os
+[<%=@dist%>-<%=@release%>-<%=@arch%>-os]
+name=<%=@dist%>-<%=@release%>-<%=@arch%>-os
 mirrorlist=<%=mirrorlist_os%>
 failovermethod=priority
 
 # Updates Repo
-[<%=dist%>-<%=release%>-<%=arch%>-updates]
-name=<%=dist%>-<%=release%>-<%=arch%>-updates
+[<%=@dist%>-<%=@release%>-<%=@arch%>-updates]
+name=<%=@dist%>-<%=@release%>-<%=@arch%>-updates
 mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
 
 # Puppetlabs Products
 [puppetlabs-products]
 name=yum.puppetlabs-products
-baseurl=http://yum.puppetlabs.com/<%=dist%>/<%=prefix%><%=release%>/products/<%=arch%>/
+baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/products/<%=@arch%>/
 enabled=1
 
 # Puppetlabs Dependencies
 [puppetlabs-dependencies]
 name=yum.puppetlabs-dependencies
-baseurl=http://yum.puppetlabs.com/<%=dist%>/<%=prefix%><%=release%>/dependencies/<%=arch%>/
+baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/dependencies/<%=@arch%>/
 enabled=1
 
-<% if dev == true %>
+<% if @dev == true %>
 # Puppetlabs Development
 [puppetlabs-devel]
 name=yum.puppetlabs-devel
-baseurl=http://yum.puppetlabs.com/<%=dist%>/<%=prefix%><%=release%>/devel/<%=arch%>/
+baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/devel/<%=@arch%>/
 enabled=1
 <% end %>
 
-<% if dist.downcase == "el" %>
+<% if @dist.downcase == "el" %>
 [epel]
 name=epel
-mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=release%>&arch=<%=arch%>
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=@release%>&arch=<%=@arch%>
 failovermethod=priority
 includepkgs=ccache
 <% end %>

@@ -1,24 +1,24 @@
 # **********************************
 # Puppet Labs pe mock configuration
-# <%=name%>
+# <%=@name%>
 # Managed by Puppet
 # **********************************
 
 <%
-  if arch == 'i386'
+  if @arch == 'i386'
     t_arch = 'i586'
   else
-    t_arch = arch
+    t_arch = @arch
   end
 %>
 
-config_opts['root'] = '<%=name%>'
-config_opts['target_arch'] = '<%=arch%>'
-config_opts['legal_host_arches'] = (<%= if arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
+config_opts['root'] = '<%=@name%>'
+config_opts['target_arch'] = '<%=@arch%>'
+config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 config_opts['chroot_setup_cmd'] = 'install aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip which xz gawk'
-config_opts['dist'] = '<%=dist%><%=release%>'  # only useful for --resultdir variable subst
+config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
-config_opts['macros']['%dist'] = '.<%=dist%><%=release%>'
+config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 config_opts['useradd'] = '/usr/sbin/useradd -o -m -u %(uid)s -g %(gid)s -d %(home)s mockbuild '
 config_opts['yum.conf'] = """
 
@@ -37,22 +37,22 @@ proxy=http://proxy.puppetlabs.lan:3128/
 
 # repos
 [os]
-name=<%=dist%>-<%=release%>-<%=t_arch%>-os
+name=<%=@dist%>-<%=@release%>-<%=t_arch%>-os
 enabled=1
-baseurl='http://yo.puppetlabs.lan/<%=dist%>-<%=release%>-sp2-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
+baseurl='http://yo.puppetlabs.lan/<%=@dist%>-<%=@release%>-sp2-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
 gpgcheck=0
 
 # weird dependencies - (openjdk from SLED [for pe-java], uuid-devel [for pe-postgres])
 [deps]
-name=<%=dist%>-<%=release%>-deps-<%=t_arch%>
+name=<%=@dist%>-<%=@release%>-deps-<%=t_arch%>
 enabled=1
-baseurl=http://yo.puppetlabs.lan/<%=dist%>-<%=release%>-deps-<%=t_arch%>/RPMS.os/
+baseurl=http://yo.puppetlabs.lan/<%=@dist%>-<%=@release%>-deps-<%=t_arch%>/RPMS.os/
 gpgcheck=0
 
 [pe]
 name=pe
 enabled=1
-baseurl='http://neptune.puppetlabs.lan/<%=pe_ver%>/repos/<%=dist%>-<%=release%>-<%=arch%>/'
+baseurl='http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/'
 skip_if_unavailable=1
 proxy=_none_
 """
