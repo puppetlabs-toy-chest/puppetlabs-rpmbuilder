@@ -8,7 +8,6 @@ describe 'rpmbuilder::mock::create_mock', :type  => 'define' do
       :proxy      => nil,
       :vendor     => "Puppet User",
       :arch       => "sparc",
-      :dev        => false,
       :mock_root  => "/etc/mock",
     },
     {
@@ -17,7 +16,6 @@ describe 'rpmbuilder::mock::create_mock', :type  => 'define' do
       :proxy      => "http://proxy.puppetlabs.com:1234",
       :vendor     => "Puppet Labs",
       :arch       => "i386",
-      :dev        => true,
       :mock_root  => "/usr/mock",
     }].each do |param_set|
       describe "With mock_root set to #{param_set[:mock_root]}" do

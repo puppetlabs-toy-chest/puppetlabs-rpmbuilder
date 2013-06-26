@@ -4,7 +4,6 @@ define rpmbuilder::mock::create_mock (
   $proxy      = false,
   $vendor     = "Puppet User",
   $arch       = undef,
-  $dev        = false,
   $mock_root  = "/etc/mock",
 ) {
 

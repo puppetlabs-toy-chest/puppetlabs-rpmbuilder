@@ -69,14 +69,6 @@ name=yum.puppetlabs-dependencies
 baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/dependencies/<%=@arch%>/
 enabled=1
 
-<% if @dev == true %>
-# Puppetlabs Development
-[puppetlabs-devel]
-name=yum.puppetlabs-devel
-baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/devel/<%=@arch%>/
-enabled=1
-<% end %>
-
 <% if @dist.downcase == "el" %>
 [epel]
 name=epel
