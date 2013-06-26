@@ -12,7 +12,7 @@ describe 'rpmbuilder::mock::pe_mock', :type  => 'define' do
     },
     { :mock_root      => "/opt/mock",
       :pe_ver         => "3.0",
-      :dist           => "something",
+      :dist           => "sles",
       :release        => "6",
       :arch           => "x86_64",
     }
