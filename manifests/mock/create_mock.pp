@@ -16,5 +16,4 @@ define rpmbuilder::mock::create_mock (
     content   => template("rpmbuilder/mock-config.erb"),
     mode      => "0644",
   }
-
 }
