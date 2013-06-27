@@ -23,24 +23,21 @@ describe 'rpmbuilder::mock::pl_mocks', :type => 'define' do
     end
 
     ["i386","x86_64"].each do |arch|
-      [true,false].each do |dev|
-        describe "With arch of #{arch} and dev set to #{dev.to_s}" do
-          let(:title) do "solaris" end
-          let(:mock_title) do
-            "pl-#{param_hash[:dist]}-#{title}-#{arch}#{dev ? "-dev" : ""}"
-          end
-
-          it { should contain_Rpmbuilder__Mock__Create_mock(mock_title).with(
-            {
-              :dist     => param_hash[:dist],
-              :release  => title,
-              :proxy    => param_hash[:proxy],
-              :vendor   => param_hash[:vendor],
-              :arch     => arch,
-              :dev      => dev,
-            })
-          }
+      describe "With arch of #{arch}" do
+        let(:title) do "solaris" end
+        let(:mock_title) do
+          "pl-#{param_hash[:dist]}-#{title}-#{arch}"
         end
+
+        it { should contain_Rpmbuilder__Mock__Create_mock(mock_title).with(
+          {
+            :dist     => param_hash[:dist],
+            :release  => title,
+            :proxy    => param_hash[:proxy],
+            :vendor   => param_hash[:vendor],
+            :arch     => arch,
+          })
+        }
       end
     end
 
