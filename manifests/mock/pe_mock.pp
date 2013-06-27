@@ -10,7 +10,7 @@ define rpmbuilder::mock::pe_mock(
     owner   => "root",
     group   => "mock",
     ensure  => present,
-    content => template("rpmbuilder/pe-mock-config.erb"),
+    content => template("rpmbuilder/pe-${dist}-mock-config.erb"),
     mode    => "0644",
   }
 }
