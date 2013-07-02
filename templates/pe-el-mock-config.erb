@@ -50,6 +50,16 @@ baseurl=http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%
 skip_if_unavailable=1
 proxy=_none_
 
+<% if @release == '5'  -%>
+[build-tools-el-<%=@release%>
+name=build-tools-<%=@release%>
+enabled=1
+baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
+skip_if_unavailable=1
+proxy=_none_
+<% end -%>
+
+
 [epel]
 name=epel
 mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=@release%>&arch=<%=@arch%>
