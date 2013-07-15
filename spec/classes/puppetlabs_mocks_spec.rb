@@ -4,14 +4,14 @@ describe 'rpmbuilder::mock::puppetlabs_mocks', :type => 'class' do
   [{},
     { :vendor           => "Puppet Labs" },
     { :proxy            => "http://proxy.puppetlabs.com:1234" },
-    { :fedora_releases  => ["18"] },
+    { :fedora_releases  => ["19"] },
     { :el_releases      => ["7"] },
   ].each do |param_set|
     describe "when #{param_set == {} ? "using default" : "specifying"} class parameters" do
       default_params = {
           :vendor           => "Puppet User",
           :proxy            => nil,
-          :fedora_releases  => ["15","16","17"],
+          :fedora_releases  => ["15","16","17","18"],
           :el_releases      => ["5","6"],
         }
 
