@@ -13,7 +13,7 @@
 %>
 
 config_opts['root'] = '<%=@name%>'
-config_opts['target_arch'] = '<%=@arch%>'
+config_opts['target_arch'] = '<%=t_arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 config_opts['chroot_setup_cmd'] = 'install aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip which xz gawk'
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
