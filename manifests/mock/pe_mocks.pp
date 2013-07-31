@@ -1,5 +1,5 @@
 class rpmbuilder::mock::pe_mocks(
-  $pe_vers = ["1.2","2.0","2.5","2.6","2.7","2.8","3.0"],
+  $pe_vers = ["1.2","2.0","2.5","2.6","2.7","2.8","3.0", "3.1" ],
   $mock_root = '/etc/mock'
 ) {
   # Default PE mocks for PE 1.2 through 3.0
