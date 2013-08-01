@@ -1,0 +1,76 @@
+# **********************************
+# Puppet Labs pe legacy mock configuration
+# <%=@name%>
+# Managed by Puppet
+# **********************************
+
+config_opts['root'] = '<%=@name%>'
+config_opts['target_arch'] = '<%=@arch%>'
+config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
+config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
+config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
+config_opts['macros']['%vendor'] = 'Puppet Labs'
+<% if @dist == "el" %>
+config_opts['macros']['%rhel'] = '<%=@release%>'
+<% end %>
+
+config_opts['yum.conf'] = """
+
+[main]
+cachedir=/var/cache/yum
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+proxy=http://proxy.puppetlabs.lan:3128/
+
+
+# repos
+[groups]
+name=groups
+baseurl=http://neptune.delivery.puppetlabs.net/buildgroups/rhel<%=@release%>/<%=@arch%>/
+proxy=_none_
+
+# There is no variable we pass that is 4.9 so leaving it hard-coded for now as
+# this should be the only legacy mock until at least 2017, and possibly 2020. By
+# then, I hope we have better tooling.
+# #
+# We may also want to switch to a real RHEL mirror and not CentOS, but we do not
+# have one currently.
+[vault-updates]
+name=CentOS-$releasever - Updates
+baseurl=http://vault.centos.org/4.9/updates/<%=@arch%>/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-centos4
+priority=1
+
+[vault-base]
+name=CentOS-$releasever - Base
+baseurl=http://vault.centos.org/4.9/os/<%=@arch%>/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-centos4
+priority=1
+
+[pe]
+name=pe
+enabled=1
+baseurl=http://neptune.delivery.puppetlabs.net/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
+skip_if_unavailable=1
+proxy=_none_
+
+[build-tools-el-<%=@release%>]
+name=build-tools-<%=@release%>
+enabled=1
+baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
+skip_if_unavailable=1
+proxy=_none_
+
+# There is no ccache in EL4, so no need for EPEL at all
+"""

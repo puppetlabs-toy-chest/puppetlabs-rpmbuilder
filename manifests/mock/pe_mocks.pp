@@ -7,6 +7,10 @@ class rpmbuilder::mock::pe_mocks(
     mock_root   => $mock_root,
   }
 
+  rpmbuilder::mock::pe_legacy_mockset { $pe_vers:
+    mock_root   => $mock_root,
+  }
+
   rpmbuilder::mock::pe_mock { 'pupent-extras-el5-i386':
     pe_ver      => "2.5",
     release     => "5",
