@@ -10,6 +10,7 @@ config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586'
 config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%vendor'] = 'Puppet Labs'
 config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 <% if @dist == "el" %>
 config_opts['macros']['%rhel'] = '<%=@release%>'

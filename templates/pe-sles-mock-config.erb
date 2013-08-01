@@ -18,6 +18,7 @@ config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586'
 config_opts['chroot_setup_cmd'] = 'install aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip which xz gawk'
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%vendor'] = 'Puppet Labs'
 config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 config_opts['useradd'] = '/usr/sbin/useradd -o -m -u %(uid)s -g %(gid)s -d %(home)s mockbuild '
 config_opts['yum.conf'] = """
