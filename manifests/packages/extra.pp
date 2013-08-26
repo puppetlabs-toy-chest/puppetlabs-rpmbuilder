@@ -3,6 +3,7 @@
 class rpmbuilder::packages::extra {
   $extra_packages = [
     'rubygem-bundler',
+    'cowsay',
   ]
 
   package { $extra_packages: ensure => present, }
