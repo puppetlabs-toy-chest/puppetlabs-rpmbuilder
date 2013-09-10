@@ -33,8 +33,8 @@ proxy=http://proxy.puppetlabs.lan:3128/
 
 
 # repos
-[groups]
-name=groups
+[groups-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=groups-<%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://neptune.delivery.puppetlabs.net/buildgroups/rhel<%=@release%>/<%=@arch%>/
 proxy=_none_
 
@@ -44,29 +44,29 @@ proxy=_none_
 # #
 # We may also want to switch to a real RHEL mirror and not CentOS, but we do not
 # have one currently.
-[vault-updates]
-name=CentOS-$releasever - Updates
+[vault-updates-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=CentOS-$releasever - Updates - <%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://vault.centos.org/4.9/updates/<%=@arch%>/
 gpgcheck=1
 gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-centos4
 priority=1
 
-[vault-base]
-name=CentOS-$releasever - Base
+[vault-base-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=CentOS-$releasever - Base - <%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://vault.centos.org/4.9/os/<%=@arch%>/
 gpgcheck=1
 gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-centos4
 priority=1
 
-[pe]
-name=pe
+[pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
 baseurl=http://neptune.delivery.puppetlabs.net/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
 skip_if_unavailable=1
 proxy=_none_
 
-[build-tools-el-<%=@release%>]
-name=build-tools-<%=@release%>
+[build-tools-el-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
 baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
 skip_if_unavailable=1
