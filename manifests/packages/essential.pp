@@ -21,7 +21,7 @@ class rpmbuilder::packages::essential {
   ]
 
   package { $builder_pkgs:
-    ensure  => installed,
+    ensure  => latest,
   }
 
   case $operatingsystem {
