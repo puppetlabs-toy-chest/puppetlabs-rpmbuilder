@@ -58,20 +58,20 @@ mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
 
 # Puppetlabs Products
-[puppetlabs-products]
-name=yum.puppetlabs-products
+[puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=yum.puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/products/<%=@arch%>/
 enabled=1
 
 # Puppetlabs Dependencies
-[puppetlabs-dependencies]
-name=yum.puppetlabs-dependencies
+[puppetlabs-dependencies-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=yum.puppetlabs-dependencies-<%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/dependencies/<%=@arch%>/
 enabled=1
 
 <% if @dist.downcase == "el" %>
-[epel]
-name=epel
+[epel-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=epel-<%=@dist%>-<%=@release%>-<%=@arch%>
 mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=@release%>&arch=<%=@arch%>
 failovermethod=priority
 includepkgs=ccache

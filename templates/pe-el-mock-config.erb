@@ -32,28 +32,28 @@ syslog_device=
 proxy=http://proxy.puppetlabs.lan:3128/
 
 # repos
-[os]
+[os-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-os
 enabled=1
 mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=os
 baseurl=http://yo.puppetlabs.lan/cent<%=@release%>latestserver-<%=@arch%>/RPMS.os/
 
-[updates]
+[updates-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-updates
 enabled=0
 mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=updates
 baseurl=http://yo.puppetlabs.lan/cent<%=@release%>latestserver-<%=@arch%>/RPMS.updates/
 
-[pe]
-name=pe
+[pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
 baseurl=http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
 skip_if_unavailable=1
 proxy=_none_
 
 <% if @release == '5'  -%>
-[build-tools-el-<%=@release%>]
-name=build-tools-<%=@release%>
+[build-tools-el-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
 baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
 skip_if_unavailable=1
@@ -61,8 +61,8 @@ proxy=_none_
 <% end -%>
 
 
-[epel]
-name=epel
+[epel-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=epel-<%=@dist%>-<%=@release%>-<%=@arch%>
 mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=@release%>&arch=<%=@arch%>
 failovermethod=priority
 includepkgs=ccache
