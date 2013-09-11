@@ -52,7 +52,7 @@ skip_if_unavailable=1
 proxy=_none_
 
 <% if @release == '5'  -%>
-[build-tools-el-<%=@dist%>-<%=@release%>-<%=@arch%>]
+[build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
 baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
