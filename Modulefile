@@ -8,5 +8,5 @@ description 'Module to create a host fully equiped to build RPM packages'
 project_page 'https://github.com/Whopper92/puppetlabs-rpmbuilder'
 
 ## Add dependencies, if any:
-dependency 'stahnma/puppet-module-epel', '>= 0.0.1'
-dependency 'stahnma/puppet-module-puppetlabs_yum', '>= 0.1.0'
+dependency 'stahnma/epel', '>= 0.0.1'
+dependency 'stahnma/puppetlabs_yum', '>= 0.1.0'
