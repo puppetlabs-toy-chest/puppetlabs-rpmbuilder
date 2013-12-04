@@ -8,6 +8,9 @@ class rpmbuilder(
   $pe_vers            = undef,
   $add_pl_repos       = true,
   $use_extra_packages = false,
+  $use_tmpfs          = false,
+  $tmpfs_req_ram      = '4096',
+  $tmpfs_max_size     = '2048m',
 ) {
 
   Class['Rpmbuilder::Packages::Essential']->Class['Rpmbuilder::Mock::Puppetlabs_mocks']
@@ -35,5 +38,9 @@ class rpmbuilder(
       pe_vers   => $pe_vers,
       mock_root => $mock_root,
     }
+  }
+  
+  if $use_tmpfs {
+    include rpmbuilder::mock::tmpfs_plugin
   }
 }
