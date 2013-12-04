@@ -22,7 +22,11 @@ config_opts['macros']['%vendor'] = 'Puppet Labs'
 config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 config_opts['useradd'] = '/usr/sbin/useradd -o -m -u %(uid)s -g %(gid)s -d %(home)s mockbuild '
 config_opts['yum.conf'] = """
-
+<%- if @use_tmpfs -%>
+config_opts['plugin_conf']['tmpfs_enable'] = True %>
+config_opts['plugin_conf']['tmpfs_opts']['required_ram_mb'] = <%= @tmpfs_req_ram %>
+config_opts['plugin_conf']['tmpfs_opts']['max_fs_size'] = '<%= @tmpfs_max_size %>'
+<%- end -%>
 [main]
 cachedir=/var/cache/yum
 debuglevel=1

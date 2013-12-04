@@ -32,6 +32,11 @@ config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 <% end %>
 
 config_opts['yum.conf'] = """
+<%- if @use_tmpfs -%>
+config_opts['plugin_conf']['tmpfs_enable'] = True %>
+config_opts['plugin_conf']['tmpfs_opts']['required_ram_mb'] = <%= @tmpfs_req_ram %>
+config_opts['plugin_conf']['tmpfs_opts']['max_fs_size'] = '<%= @tmpfs_max_size %>'
+<%- end -%>
 [main]
 cachedir=/var/cache/yum
 debuglevel=1
