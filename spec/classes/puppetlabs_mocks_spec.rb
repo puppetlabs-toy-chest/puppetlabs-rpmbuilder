@@ -12,7 +12,7 @@ describe 'rpmbuilder::mock::puppetlabs_mocks', :type => 'class' do
           :vendor           => "Puppet User",
           :proxy            => nil,
           :fedora_releases  => ["17","18","19"],
-          :el_releases      => ["5","6"],
+          :el_releases      => ["5","6","7"],
         }
 
       param_hash = default_params.merge(param_set)
