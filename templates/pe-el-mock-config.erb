@@ -30,19 +30,16 @@ assumeyes=1
 syslog_ident=mock
 syslog_device=
 proxy=http://proxy.puppetlabs.lan:3128/
-
 # repos
 [os-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-os
 enabled=1
-mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=os
-baseurl=http://yo.puppetlabs.lan/cent<%=@release%>latestserver-<%=@arch%>/RPMS.os/
+baseurl=http://yo.puppetlabs.lan/rhel<%=@release%>0server-<%=@arch%>/RPMS.os/
 
 [updates-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-updates
 enabled=0
-mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=updates
-baseurl=http://yo.puppetlabs.lan/cent<%=@release%>latestserver-<%=@arch%>/RPMS.updates/
+baseurl=http://vault.centos.org/<%=@release%>.0/updates/<%=@arch%>
 
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
