@@ -1,0 +1,52 @@
+# **********************************
+# Puppet Labs pe mock configuration
+# <%=@name%>
+# Managed by Puppet
+# **********************************
+
+config_opts['root'] = '<%=@name%>'
+config_opts['target_arch'] = 'x86_64'
+config_opts['legal_host_arches'] = ('x86_64')
+config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
+config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%vendor'] = 'Puppet Labs'
+config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
+<% if @dist == "el" %>
+config_opts['macros']['%rhel'] = '<%=@release%>'
+<% end %>
+
+config_opts['yum.conf'] = """
+
+[main]
+cachedir=/var/cache/yum
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+proxy=http://proxy.puppetlabs.lan:3128/
+
+# repos
+[beta-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=centos<%=@release%>-<%=@arch%>-os
+enabled=1
+baseurl=http://yo.puppetlabs.lan/rhel-7-beta-x86_64/
+
+[pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
+enabled=1
+baseurl=http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
+skip_if_unavailable=1
+proxy=_none_
+
+[epel-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=epel-<%=@dist%>-<%=@release%>-<%=@arch%>
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=@release%>&arch=<%=@arch%>
+failovermethod=priority
+includepkgs=ccache
+"""
