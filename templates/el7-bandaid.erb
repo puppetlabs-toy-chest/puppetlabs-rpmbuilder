@@ -31,6 +31,20 @@ proxy=http://modi.puppetlabs.lan:3128
 name=beta
 baseurl=http://ftp.redhat.com/redhat/rhel/beta/7/x86_64/os/
 
+[puppetlabs-products]
+name=Puppet Labs Products El 7
+baseurl=http://yum.puppetlabs.com/el/7/products/x86_64
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+enabled=1
+gpgcheck=1
+
+[puppetlabs-deps]
+name=Puppet Labs Dependencies El 7
+baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+enabled=1
+gpgcheck=1
+
 [epel-el-7-x86_64]
 name=epel-el-7-x86_64
 mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=x86_64
