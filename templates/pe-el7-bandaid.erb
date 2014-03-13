@@ -7,7 +7,7 @@
 config_opts['root'] = '<%=@name%>'
 config_opts['target_arch'] = 'x86_64'
 config_opts['legal_host_arches'] = ('x86_64')
-config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything'
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
 config_opts['macros']['%vendor'] = 'Puppet Labs'
@@ -41,6 +41,13 @@ baseurl=http://yo.puppetlabs.lan/rhel-7-beta-x86_64/
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
 baseurl=http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
+skip_if_unavailable=1
+proxy=_none_
+
+[build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
+enabled=1
+baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
 skip_if_unavailable=1
 proxy=_none_
 
