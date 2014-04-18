@@ -7,7 +7,7 @@
 config_opts['root'] = 'pl-el-7-x86_64'
 config_opts['target_arch'] = 'x86_64'
 config_opts['legal_host_arches'] = ('x86_64',)
-config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything'
+config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything systemd'
 config_opts['dist'] = 'el7'  # only useful for --resultdir variable subst
 config_opts['macros']['%_host_vendor'] = 'Puppet Labs'
 config_opts['macros']['%rhel'] = '7'
