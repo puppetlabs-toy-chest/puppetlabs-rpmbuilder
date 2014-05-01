@@ -32,10 +32,14 @@ syslog_device=
 proxy=http://proxy.puppetlabs.lan:3128/
 
 # repos
-[beta-<%=@dist%>-<%=@release%>-<%=@arch%>]
+[os-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-os
 enabled=1
-baseurl=http://yo.puppetlabs.lan/rhel-7-beta-x86_64/
+baseurl=http://osmirror.delivery.puppetlabs.net/rhel<%=@release%>rcserver-<%=@arch%>/RPMS.os/
+
+[optional-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=optional
+baseurl=http://osmirror.delivery.puppetlabs.net/rhel<%=@release%>rcserver-<%=@arch%>/RPMS.optional/
 
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
