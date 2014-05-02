@@ -6,7 +6,7 @@ define rpmbuilder::mock::pl_mocks (
 ) {
 
   # This is absolutely a bandaid; it's just here to stub
-  # out support for EL7, using the beta release. When EL7
+  # out support for EL7, using the RC released in 4/14. When EL7
   # is a fully baked thing then this will reverted/updated
   # to be 87% less hacky. For now we're also only using
   # x86_64 as an arch, because EL7 beta is only x64_64.

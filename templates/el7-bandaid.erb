@@ -27,9 +27,13 @@ syslog_ident=mock
 syslog_device=
 proxy=http://modi.puppetlabs.lan:3128
 
-[beta]
-name=beta
-baseurl=http://ftp.redhat.com/redhat/rhel/beta/7/x86_64/os/
+[os]
+name=os
+baseurl=http://ftp.redhat.com/redhat/rhel/rc/7/Server/x86_64/os/
+
+[optional]
+name=optional
+baseurl=http://ftp.redhat.com/redhat/rhel/rc/7/Server-optional/x86_64/os/
 
 [puppetlabs-products]
 name=Puppet Labs Products El 7
