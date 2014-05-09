@@ -69,6 +69,15 @@ name=yum.puppetlabs-dependencies-<%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/dependencies/<%=@arch%>/
 enabled=1
 
+# Internal Puppetlabs Build Tools
+# will be unavailable to most
+[build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
+enabled=1
+baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
+skip_if_unavailable=1
+proxy=_none_
+
 <% if @dist.downcase == "el" %>
 [epel-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=epel-<%=@dist%>-<%=@release%>-<%=@arch%>
