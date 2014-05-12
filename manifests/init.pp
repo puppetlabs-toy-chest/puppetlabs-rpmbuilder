@@ -11,6 +11,8 @@ class rpmbuilder(
   $use_tmpfs          = false,
   $tmpfs_req_ram      = '4096',
   $tmpfs_max_size     = '2048m',
+  $cleanup_on_failure = true,
+  $cleanup_on_success = true,
 ) {
 
   Class['Rpmbuilder::Packages::Essential']->Class['Rpmbuilder::Mock::Puppetlabs_mocks']
@@ -39,8 +41,13 @@ class rpmbuilder(
       mock_root => $mock_root,
     }
   }
-  
+
   if $use_tmpfs {
     include rpmbuilder::mock::tmpfs_plugin
+  }
+
+  class { rpmbuilder::mock::cleanup:
+    on_success => $cleanup_on_success,
+    on_failure => $cleanup_on_failure,
   }
 }
