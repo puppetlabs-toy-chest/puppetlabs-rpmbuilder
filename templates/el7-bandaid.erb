@@ -27,6 +27,15 @@ syslog_ident=mock
 syslog_device=
 proxy=http://modi.puppetlabs.lan:3128
 
+<% if scope.lookupvar("::rpmbuilder::add_build_tools_repo") == true -%>
+# Build Tools Repo
+[el-7-x86_64-build-tools]
+name=el-7-x86_64-build-tools
+baseurl=http://pl-build-tools.delivery.puppetlabs.net/yum/el/7/x86_64
+skip_if_unavailable=True
+proxy=_none_
+<% end -%>
+
 [os]
 name=os
 baseurl=http://ftp.redhat.com/redhat/rhel/rc/7/Server/x86_64/os/
