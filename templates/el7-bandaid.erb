@@ -37,24 +37,26 @@ skip_if_unavailable=True
 proxy=_none_
 <% end -%>
 
+# The OS & Optional repos have been pointed to internal Puppet Labs
+# resources until CentOS 7 is released.
 [os]
 name=os
-baseurl=http://ftp.redhat.com/redhat/rhel/rc/7/Server/x86_64/os/
+baseurl=http://oy.delivery.puppetlabs.net/rhel7rcserver-x86_64/RPMS.os/
 
 [optional]
 name=optional
-baseurl=http://ftp.redhat.com/redhat/rhel/rc/7/Server-optional/x86_64/os/
+baseurl=http://oy.delivery.puppetlabs.net/rhel7rcserver-x86_64/RPMS.optional/
 
 [puppetlabs-products]
 name=Puppet Labs Products El 7
-baseurl=http://yum.puppetlabs.com/el/7/products/x86_64
+baseurl=http://yum.puppetlabs.com/el/7/products/x86_64/
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
 enabled=1
 gpgcheck=1
 
 [puppetlabs-deps]
 name=Puppet Labs Dependencies El 7
-baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64
+baseurl=http://yum.puppetlabs.com/el/7/dependencies/x86_64/
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
 enabled=1
 gpgcheck=1
