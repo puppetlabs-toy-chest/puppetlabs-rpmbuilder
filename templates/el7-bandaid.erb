@@ -38,14 +38,16 @@ proxy=_none_
 <% end -%>
 
 # The OS & Optional repos have been pointed to internal Puppet Labs
-# resources until CentOS 7 is released.
+# resources until CentOS 7 is released. Using these resources outside
+# of the internal Puppet Labs network will likely result in NXDOMAIN
+# errors; caveat lector.
 [os]
 name=os
-baseurl=http://oy.delivery.puppetlabs.net/rhel7rcserver-x86_64/RPMS.os/
+baseurl=http://osmirror.delivery.puppetlabs.net/rhel7latestserver-x86_64/RPMS.os/
 
 [optional]
 name=optional
-baseurl=http://oy.delivery.puppetlabs.net/rhel7rcserver-x86_64/RPMS.optional/
+baseurl=http://osmirror.delivery.puppetlabs.net/rhel7latestserver-x86_64/RPMS.optional/
 
 [puppetlabs-products]
 name=Puppet Labs Products El 7
