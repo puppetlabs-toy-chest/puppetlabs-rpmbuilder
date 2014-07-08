@@ -7,7 +7,11 @@
 config_opts['root'] = '<%=@name%>'
 config_opts['target_arch'] = '<%=@arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
-config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+<% if @dist == "el" and @release == 7 %>
+  config_opts['chroot_setup_cmd'] = 'groupinstall @buildsys-build redhat-release-everything systemd'
+<% else %>
+  config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+<% end %>
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
 config_opts['macros']['%vendor'] = 'Puppet Labs'
@@ -36,13 +40,13 @@ proxy=http://proxy.puppetlabs.lan:3128/
 name=centos<%=@release%>-<%=@arch%>-os
 enabled=1
 mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=os
-baseurl=http://yo.puppetlabs.lan/cent<%=@release%>latestserver-<%=@arch%>/RPMS.os/
+baseurl=http://osmirror.delivery.puppetlabs.net/cent<%=@release%>latestserver-<%=@arch%>/RPMS.os/
 
 [updates-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-updates
 enabled=0
 mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=updates
-baseurl=http://yo.puppetlabs.lan/cent<%=@release%>latestserver-<%=@arch%>/RPMS.updates/
+baseurl=http://osmirror.delivery.puppetlabs.net/cent<%=@release%>latestserver-<%=@arch%>/RPMS.updates/
 
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>

@@ -10,31 +10,4 @@ class rpmbuilder::mock::pe_mocks(
     mock_root   => $mock_root,
   }
 
-  rpmbuilder::mock::pe_mock { 'pupent-extras-el5-i386':
-    pe_ver      => "2.5",
-    release     => "5",
-    arch        => "i386",
-    mock_root   => $mock_root,
-  }
-
-  rpmbuilder::mock::pe_mock { 'pupent-extras-el5-x86_64':
-    pe_ver      => "2.5",
-    release     => "5",
-    arch        => "x86_64",
-    mock_root   => $mock_root,
-  }
-
-  rpmbuilder::mock::pe_mock { 'pupent-extras-el6-i386':
-    pe_ver      => "2.5",
-    release     => "6",
-    arch        => "i386",
-    mock_root   => $mock_root,
-  }
-
-  rpmbuilder::mock::pe_mock { 'pupent-extras-el6-x86_64':
-    pe_ver      => "2.5",
-    release     => "6",
-    arch        => "x86_64",
-    mock_root   => $mock_root,
-  }
 }
