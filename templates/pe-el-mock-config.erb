@@ -62,7 +62,7 @@ baseurl=http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%
 skip_if_unavailable=1
 proxy=_none_
 
-<% if @release == '5' || @release == '6'  -%>
+<% if @dist == "el" -%>
 [build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
