@@ -5,9 +5,4 @@ class rpmbuilder::mock::pe_mocks(
   rpmbuilder::mock::pe_mockset { $pe_vers:
     mock_root   => $mock_root,
   }
-
-  rpmbuilder::mock::pe_legacy_mockset { $pe_vers:
-    mock_root   => $mock_root,
-  }
-
 }
