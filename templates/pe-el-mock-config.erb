@@ -38,13 +38,11 @@ syslog_device=
 [os-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-os
 enabled=1
-mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=os
 baseurl=http://osmirror.delivery.puppetlabs.net/cent<%=@release%>latestserver-<%=@arch%>/RPMS.os/
 
 [updates-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=centos<%=@release%>-<%=@arch%>-updates
 enabled=0
-mirrorlist=http://mirrorlist.centos.org/?release=<%=@release%>&arch=<%=@arch%>&repo=updates
 baseurl=http://osmirror.delivery.puppetlabs.net/cent<%=@release%>latestserver-<%=@arch%>/RPMS.updates/
 
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
