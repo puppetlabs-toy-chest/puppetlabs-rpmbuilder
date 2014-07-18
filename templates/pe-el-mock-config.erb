@@ -9,6 +9,8 @@ config_opts['target_arch'] = '<%=@arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 <% if @dist == "el" and @release == 7 %>
 config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything systemd'
+<% elsif @dist == "el" and @release == 4 %>
+config_opts['chroot_setup_cmd'] = 'install buildsys-build'
 <% else %>
 config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 <% end %>
@@ -33,6 +35,14 @@ gpgcheck=0
 assumeyes=1
 syslog_ident=mock
 syslog_device=
+
+<% if @dist == "el" and @release == 4 -%>
+# repos
+[groups-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=groups-<%=@dist%>-<%=@release%>-<%=@arch%>
+baseurl=http://neptune.delivery.puppetlabs.net/buildgroups/rhel<%=@release%>/<%=@arch%>/
+proxy=_none_
+<% end -%>
 
 # repos
 [os-<%=@dist%>-<%=@release%>-<%=@arch%>]
@@ -61,10 +71,12 @@ skip_if_unavailable=1
 proxy=_none_
 <% end -%>
 
-
+<% unless (@dist == "el" and @release == 4) -%>
 [epel-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=epel-<%=@dist%>-<%=@release%>-<%=@arch%>
 mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-<%=@release%>&arch=<%=@arch%>
 failovermethod=priority
 includepkgs=ccache
+proxy=http://proxy.puppetlabs.lan:3128/
+<% end -%>
 """
