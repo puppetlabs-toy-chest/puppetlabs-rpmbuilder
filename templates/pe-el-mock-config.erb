@@ -8,9 +8,9 @@ config_opts['root'] = '<%=@name%>'
 config_opts['target_arch'] = '<%=@arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 <% if @dist == "el" and @release == 7 %>
-  config_opts['chroot_setup_cmd'] = 'groupinstall @buildsys-build redhat-release-everything systemd'
+config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything systemd'
 <% else %>
-  config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 <% end %>
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
