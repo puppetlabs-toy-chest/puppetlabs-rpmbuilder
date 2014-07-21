@@ -39,14 +39,14 @@ syslog_device=
 [os-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=<%=@dist%>-<%=@release%>-<%=t_arch%>-os
 enabled=1
-baseurl='http://yo.puppetlabs.lan/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
+baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
 gpgcheck=0
 
 # weird dependencies - (openjdk from SLED [for pe-java], uuid-devel [for pe-postgres])
 [deps-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=<%=@dist%>-<%=@release%>-deps-<%=t_arch%>
 enabled=1
-baseurl=http://yo.puppetlabs.lan/<%=@dist%>-<%=@release%>-deps-<%=t_arch%>/RPMS.os/
+baseurl=http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-deps-<%=t_arch%>/RPMS.os/
 gpgcheck=0
 
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
