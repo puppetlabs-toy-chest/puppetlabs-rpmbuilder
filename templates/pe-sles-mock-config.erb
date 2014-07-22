@@ -5,7 +5,7 @@
 # **********************************
 
 <%
-  if @arch == 'i386'
+  if @release >= '11' && @arch == 'i386'
     t_arch = 'i586'
   else
     t_arch = @arch
@@ -42,12 +42,14 @@ enabled=1
 baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
 gpgcheck=0
 
+<% if @release >= '11' %>
 # weird dependencies - (openjdk from SLED [for pe-java], uuid-devel [for pe-postgres])
 [deps-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=<%=@dist%>-<%=@release%>-deps-<%=t_arch%>
 enabled=1
 baseurl=http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-deps-<%=t_arch%>/RPMS.os/
 gpgcheck=0
+<% end %>
 
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
