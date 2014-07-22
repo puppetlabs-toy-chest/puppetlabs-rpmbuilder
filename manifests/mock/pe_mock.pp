@@ -2,6 +2,7 @@ define rpmbuilder::mock::pe_mock(
   $pe_ver,
   $dist = "el",
   $release,
+  $sp = "sp1",
   $arch,
   $mock_root = "/etc/mock"
 ) {
