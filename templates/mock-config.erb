@@ -30,9 +30,7 @@ config_opts['macros']['%_host_vendor'] = '<%=@vendor%>'
 
 <% if @dist == "el" %>
 config_opts['macros']['%rhel'] = '<%=@release%>'
-  <% if @release.to_i == 5 %>
 config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
-  <% end %>
 <% end %>
 
 config_opts['yum.conf'] = """
