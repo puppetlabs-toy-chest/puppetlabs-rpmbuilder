@@ -40,7 +40,7 @@ syslog_device=
 # repos
 [groups-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=groups-<%=@dist%>-<%=@release%>-<%=@arch%>
-baseurl=http://neptune.delivery.puppetlabs.net/buildgroups/rhel<%=@release%>/<%=@arch%>/
+baseurl=http://enterprise.delivery.puppetlabs.net/buildgroups/rhel<%=@release%>/<%=@arch%>/
 proxy=_none_
 <% end -%>
 
@@ -58,7 +58,7 @@ baseurl=http://osmirror.delivery.puppetlabs.net/cent<%=@release%>latestserver-<%
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
-baseurl=http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
+baseurl=http://enterprise.delivery.puppetlabs.net/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/
 skip_if_unavailable=1
 proxy=_none_
 
@@ -66,7 +66,7 @@ proxy=_none_
 [build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=build-tools-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
-baseurl=http://neptune.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
+baseurl=http://enterprise.delivery.puppetlabs.net/build-tools/<%=@dist%>/<%=@release%>/<%=@arch%>/
 skip_if_unavailable=1
 proxy=_none_
 <% end -%>
