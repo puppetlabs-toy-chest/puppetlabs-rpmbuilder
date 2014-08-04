@@ -15,7 +15,7 @@
 config_opts['root'] = '<%=@name%>'
 config_opts['target_arch'] = '<%=t_arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
-config_opts['chroot_setup_cmd'] = 'install aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip which xz gawk'
+config_opts['chroot_setup_cmd'] = 'install pwdutils aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip util-linux gawk'
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
 config_opts['plugin_conf']['ccache_enable'] = False
 config_opts['macros']['%vendor'] = 'Puppet Labs'
@@ -39,10 +39,14 @@ syslog_device=
 [os-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=<%=@dist%>-<%=@release%>-<%=t_arch%>-os
 enabled=1
+<% if @release == '10' %>
+baseurl='http://neptune.delivery.puppetlabs.net/<%=@dist%>/<%=@release%>/<%=t_arch%>/'
+<% else %>
 baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
+<% end %>
 gpgcheck=0
 
-<% if @release >= '11' %>
+<% if @release == '11' %>
 # weird dependencies - (openjdk from SLED [for pe-java], uuid-devel [for pe-postgres])
 [deps-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=<%=@dist%>-<%=@release%>-deps-<%=t_arch%>
