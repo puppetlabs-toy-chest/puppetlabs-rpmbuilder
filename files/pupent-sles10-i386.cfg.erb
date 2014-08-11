@@ -1,12 +1,12 @@
 # **********************************
 # Puppet Labs pe mock configuration
-# pupent-3.2-sles10-i386
+# pupent-<%= pe_version %>-sles10-i386
 # Managed by Puppet
 # **********************************
 
 
 
-config_opts['root'] = 'pupent-3.2-sles10-i386'
+config_opts['root'] = 'pupent-<%= pe_version %>-sles10-i386'
 config_opts['target_arch'] = 'i386'
 config_opts['legal_host_arches'] = ('i386', 'i586', 'i686', 'x86_64')
 config_opts['chroot_setup_cmd'] = 'install aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip which xz gawk'
@@ -41,7 +41,7 @@ gpgcheck=0
 [pe-sles-10-i386]
 name=pe-sles-10-i386
 enabled=1
-baseurl='http://neptune.puppetlabs.lan/3.2/repos/sles-10-i386/'
+baseurl='http://neptune.puppetlabs.lan/<%= pe_version %>/repos/sles-10-i386/'
 skip_if_unavailable=1
 proxy=_none_
 """

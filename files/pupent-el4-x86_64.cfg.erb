@@ -1,10 +1,10 @@
 # **********************************
 # Puppet Labs pe mock configuration
-# pupent-3.2-el4-x86_64
+# pupent-<%= pe_version %>-el4-x86_64
 # Managed by Puppet
 # **********************************
 
-config_opts['root'] = 'pupent-3.2-el4-x86_64'
+config_opts['root'] = 'pupent-<%= pe_version %>-el4-x86_64'
 config_opts['target_arch'] = 'x86_64'
 config_opts['legal_host_arches'] = ('x86_64')
 config_opts['chroot_setup_cmd'] = 'install buildsys-build'
@@ -48,7 +48,7 @@ baseurl=http://osmirror.delivery.puppetlabs.net/cent4latestserver-x86_64/RPMS.up
 [pe-el-4-x86_64]
 name=pe-el-4-x86_64
 enabled=1
-baseurl=http://neptune.puppetlabs.lan/3.2/repos/el-4-x86_64/
+baseurl=http://neptune.puppetlabs.lan/<%= pe_version %>/repos/el-4-x86_64/
 skip_if_unavailable=1
 proxy=_none_
 

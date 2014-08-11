@@ -1,10 +1,10 @@
 # **********************************
 # Puppet Labs pe mock configuration
-# pupent-3.2-eos4-i386
+# pupent-<%= pe_version %>-eos4-i386
 # Managed by Puppet
 # **********************************
 
-config_opts['root'] = 'pupent-3.2-eos4-i386'
+config_opts['root'] = 'pupent-<%= pe_version %>-eos4-i386'
 config_opts['target_arch'] = 'i386'
 config_opts['legal_host_arches'] = ('i386', 'i586', 'i686', 'x86_64')
 config_opts['chroot_setup_cmd'] = 'install bash bzip2 coreutils diffutils findutils gawk gcc gcc-c++ grep gzip info make patch redhat-rpm-config rpm-build sed shadow-utils tar unzip util-linux-ng which xz'
@@ -48,7 +48,7 @@ baseurl=http://osmirror.delivery.puppetlabs.net/eos-4-i386/RPMS.all/
 [pe]
 name=pe
 enabled=1
-baseurl=http://enterprise.delivery.puppetlabs.net/3.2/repos/eos-4-i386/
+baseurl=http://enterprise.delivery.puppetlabs.net/<%= pe_version %>/repos/eos-4-i386/
 skip_if_unavailable=1
 proxy=_none_
 
