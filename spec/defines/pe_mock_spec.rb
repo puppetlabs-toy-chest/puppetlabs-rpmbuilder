@@ -24,7 +24,7 @@ describe 'rpmbuilder::mock::pe_mock', :type  => 'define' do
 
 
         let(:title) { "pupent-#{param_set[:pe_ver]}-#{param_set[:dist]}-#{param_set[:arch]}" }
-        let(:expected_pe_repo) { "http:\/\/neptune.puppetlabs.lan\/#{param_set[:pe_ver]}\/repos\/#{param_set[:dist]}-#{param_set[:release]}-#{param_set[:arch]}"
+        let(:expected_pe_repo) { "http:\/\/enterprise.delivery.puppetlabs.net\/#{param_set[:pe_ver]}\/repos\/#{param_set[:dist]}-#{param_set[:release]}-#{param_set[:arch]}"
         }
 
         it { should contain_file(title).with(

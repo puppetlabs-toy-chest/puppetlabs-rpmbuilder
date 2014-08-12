@@ -40,7 +40,7 @@ syslog_device=
 name=<%=@dist%>-<%=@release%>-<%=t_arch%>-os
 enabled=1
 <% if @release == '10' %>
-baseurl='http://neptune.delivery.puppetlabs.net/<%=@dist%>/<%=@release%>/<%=t_arch%>/'
+baseurl='http://enterprise.delivery.puppetlabs.net/<%=@dist%>/<%=@release%>/<%=t_arch%>/'
 <% else %>
 baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
 <% end %>
@@ -58,7 +58,7 @@ gpgcheck=0
 [pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
 enabled=1
-baseurl='http://neptune.puppetlabs.lan/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/'
+baseurl='http://enterprise.delivery.puppetlabs.net/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/'
 skip_if_unavailable=1
 proxy=_none_
 """
