@@ -34,12 +34,14 @@ class rpmbuilder(
     vendor            => $vendor,
     proxy             => $proxy,
     mock_root         => $mock_root,
+    require           => Package['mock'],
   }
 
   if $pe {
     class { rpmbuilder::mock::pe_mocks:
       pe_vers   => $pe_vers,
       mock_root => $mock_root,
+      require   => Package['mock'],
     }
   }
 
