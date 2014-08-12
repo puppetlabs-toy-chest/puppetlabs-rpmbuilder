@@ -1,6 +1,10 @@
-class rpmbuilder::packages::essential {
-  Package {
-    require  => Class['epel']
+class rpmbuilder::packages::essential (
+  $epel = true
+) {
+  if $epel {
+    Package {
+      require  => Class['epel']
+    }
   }
 
   $builder_pkgs = [

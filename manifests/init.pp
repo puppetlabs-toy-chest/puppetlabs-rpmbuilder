@@ -6,6 +6,7 @@ class rpmbuilder(
   $proxy                = undef,
   $pe                   = false,
   $pe_vers              = undef,
+  $add_epel             = true,
   $add_pl_repos         = true,
   $use_extra_packages   = false,
   $use_tmpfs            = false,
@@ -21,8 +22,14 @@ class rpmbuilder(
   if $add_pl_repos {
     include puppetlabs_yum
   }
-  include epel
-  include rpmbuilder::packages::essential
+
+  if $add_epel {
+    include epel
+  }
+
+  class { "rpmbuilder::packages::essential":
+    epel  => $add_epel,
+  }
 
   if ($use_extra_packages) {
     include rpmbuilder::packages::extra
