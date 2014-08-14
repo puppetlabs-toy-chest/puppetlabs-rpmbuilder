@@ -41,6 +41,7 @@ class rpmbuilder(
       pe_vers   => $pe_vers,
       mock_root => $mock_root,
     }
+    include rpmbuilder::mock::pe_mockdefaults
   }
 
   if $use_tmpfs {
