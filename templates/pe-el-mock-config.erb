@@ -15,7 +15,7 @@ config_opts['chroot_setup_cmd'] = 'install buildsys-build'
 config_opts['chroot_setup_cmd'] = 'install @buildsys-build'
 <% end -%>
 config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir variable subst
-config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['plugin_conf']['ccache_enable'] = True
 config_opts['macros']['%vendor'] = 'Puppet Labs'
 config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 <% if @dist == "el" -%>
