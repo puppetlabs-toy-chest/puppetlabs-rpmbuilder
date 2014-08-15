@@ -19,7 +19,7 @@ config_opts['dist'] = '<%=@dist%><%=@release%>'  # only useful for --resultdir v
 config_opts['plugin_conf']['ccache_enable'] = False
 <% else -%>
 config_opts['plugin_conf']['ccache_enable'] = True
-< % end -%>
+<% end -%>
 config_opts['macros']['%vendor'] = 'Puppet Labs'
 config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
 <% if @dist == "el" -%>
