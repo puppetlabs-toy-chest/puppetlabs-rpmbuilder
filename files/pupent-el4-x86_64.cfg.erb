@@ -1,0 +1,62 @@
+# **********************************
+# Puppet Labs pe mock configuration
+# pupent-<%= pe_version %>-el4-x86_64
+# Managed by Puppet
+# **********************************
+
+config_opts['root'] = 'pupent-<%= pe_version %>-el4-x86_64'
+config_opts['target_arch'] = 'x86_64'
+config_opts['legal_host_arches'] = ('x86_64')
+config_opts['chroot_setup_cmd'] = 'install buildsys-build'
+config_opts['dist'] = 'el4'  # only useful for --resultdir variable subst
+config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%vendor'] = 'Puppet Labs'
+config_opts['macros']['%dist'] = '.el4'
+config_opts['macros']['%rhel'] = '4'
+
+config_opts['yum.conf'] = """
+
+[main]
+cachedir=/var/cache/yum
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+
+# repos
+[groups-el-4-x86_64]
+name=groups-el-4-x86_64
+baseurl=http://enterprise.delivery.puppetlabs.net/buildgroups/rhel4/x86_64/
+proxy=_none_
+
+# repos
+[os-el-4-x86_64]
+name=centos4-x86_64-os
+enabled=1
+baseurl=http://osmirror.delivery.puppetlabs.net/cent4latestserver-x86_64/RPMS.os/
+
+[updates-el-4-x86_64]
+name=centos4-x86_64-updates
+enabled=0
+baseurl=http://osmirror.delivery.puppetlabs.net/cent4latestserver-x86_64/RPMS.updates/
+
+[pe-el-4-x86_64]
+name=pe-el-4-x86_64
+enabled=1
+baseurl=http://enterprise.delivery.puppetlabs.net/<%= pe_version %>/repos/el-4-x86_64/
+skip_if_unavailable=1
+proxy=_none_
+
+[build-tools-el-4-x86_64]
+name=build-tools-el-4-x86_64
+enabled=1
+baseurl=http://enterprise.delivery.puppetlabs.net/build-tools/el/4/x86_64/
+skip_if_unavailable=1
+proxy=_none_
+
+"""

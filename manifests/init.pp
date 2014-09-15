@@ -50,6 +50,7 @@ class rpmbuilder(
       mock_root => $mock_root,
       require   => Package['mock'],
     }
+    include rpmbuilder::mock::pe_mockdefaults
   }
 
   if $use_tmpfs {

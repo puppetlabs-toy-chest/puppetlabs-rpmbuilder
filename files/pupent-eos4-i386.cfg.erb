@@ -1,0 +1,62 @@
+# **********************************
+# Puppet Labs pe mock configuration
+# pupent-<%= pe_version %>-eos4-i386
+# Managed by Puppet
+# **********************************
+
+config_opts['root'] = 'pupent-<%= pe_version %>-eos4-i386'
+config_opts['target_arch'] = 'i386'
+config_opts['legal_host_arches'] = ('i386', 'i586', 'i686', 'x86_64')
+config_opts['chroot_setup_cmd'] = 'install bash bzip2 coreutils diffutils findutils gawk gcc gcc-c++ grep gzip info make patch redhat-rpm-config rpm-build sed shadow-utils tar unzip util-linux-ng which xz'
+#config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
+config_opts['dist'] = 'eos4'  # only useful for --resultdir variable subst
+config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%vendor'] = 'Puppet Labs'
+config_opts['macros']['%dist'] = '.eos4'
+
+config_opts['yum.conf'] = """
+
+[main]
+cachedir=/var/cache/yum
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+proxy=http://proxy.puppetlabs.lan:3128/
+
+# repos
+[base]
+name=fedora-14-i386
+enabled=1
+baseurl=http://osmirror.delivery.puppetlabs.net/fedora14-i386/RPMS.os/
+
+[updates]
+name=fedora-14-i386-updates
+enabled=1
+baseurl=http://osmirror.delivery.puppetlabs.net/fedora14-i386/RPMS.updates/
+
+[device-upstream]
+name=eos-4-i386
+enabled=1
+baseurl=http://osmirror.delivery.puppetlabs.net/eos-4-i386/RPMS.all/
+
+[pe]
+name=pe
+enabled=1
+baseurl=http://enterprise.delivery.puppetlabs.net/<%= pe_version %>/repos/eos-4-i386/
+skip_if_unavailable=1
+proxy=_none_
+
+[build-tools-eos-4]
+name=build-tools-eos-4
+enabled=1
+baseurl=http://enterprise.delivery.puppetlabs.net/build-tools/eos/4/i386/
+skip_if_unavailable=1
+proxy=_none_
+
+"""

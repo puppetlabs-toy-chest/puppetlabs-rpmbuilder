@@ -1,0 +1,54 @@
+# **********************************
+# Puppet Labs pe mock configuration
+# pupent-<%= pe_version %>-sles11-i386
+# Managed by Puppet
+# **********************************
+
+
+
+config_opts['root'] = 'pupent-<%= pe_version %>-sles11-i386'
+config_opts['target_arch'] = 'i586'
+config_opts['legal_host_arches'] = ('i386', 'i586', 'i686', 'x86_64')
+config_opts['chroot_setup_cmd'] = 'install aaa_base bash buildsys-macros coreutils findutils glibc glibc-devel glibc-locale sles-release rpm make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip which xz gawk'
+config_opts['dist'] = 'sles11'  # only useful for --resultdir variable subst
+config_opts['plugin_conf']['ccache_enable'] = False
+config_opts['macros']['%vendor'] = 'Puppet Labs'
+config_opts['macros']['%dist'] = '.sles11'
+config_opts['useradd'] = '/usr/sbin/useradd -o -m -u %(uid)s -g %(gid)s -d %(home)s mockbuild '
+config_opts['yum.conf'] = """
+
+[main]
+cachedir=/var/cache/yum
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+
+# repos
+[os-sles-11-i386]
+name=sles-11-i586-os
+enabled=1
+baseurl='http://osmirror.delivery.puppetlabs.net/sles-11-sp1-i586-latest-i586/RPMS.os/'
+gpgcheck=0
+
+
+# weird dependencies - (openjdk from SLED [for pe-java], uuid-devel [for pe-postgres])
+[deps-sles-11-i386]
+name=sles-11-deps-i586
+enabled=1
+baseurl=http://osmirror.delivery.puppetlabs.net/sles-11-deps-i586/RPMS.os/
+gpgcheck=0
+
+
+[pe-sles-11-i386]
+name=pe-sles-11-i386
+enabled=1
+baseurl='http://enterprise.delivery.puppetlabs.net/<%= pe_version %>/repos/sles-11-i386/'
+skip_if_unavailable=1
+proxy=_none_
+"""
