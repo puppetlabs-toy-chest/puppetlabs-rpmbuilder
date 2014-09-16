@@ -22,15 +22,10 @@ class rpmbuilder::packages::essential (
     'rubygem-rake',
     'yum',
     'yum-utils',
+    'rpm-sign',
   ]
 
   package { $builder_pkgs:
     ensure  => latest,
-  }
-
-  case $operatingsystem {
-    'Fedora': {
-      package { 'rpm-sign': ensure => installed }
-    }
   }
 }
