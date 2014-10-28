@@ -86,4 +86,11 @@ class rpmbuilder::mock::pe_mockdefaults(
     source => 'puppet:///modules/rpmbuilder/pupent-sles11-x86_64.cfg.erb',
     mode   => '0644',
   }
+  file { "${mock_root}/pupent-sles12-x86_64.cfg.erb":
+    ensure => file,
+    owner  => 'root',
+    group  => 'mock',
+    source => 'puppet:///modules/rpmbuilder/pupent-sles12-x86_64.cfg.erb',
+    mode   => '0644',
+  }
 }
