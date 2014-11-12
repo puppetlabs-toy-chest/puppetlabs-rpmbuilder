@@ -40,6 +40,16 @@ assumeyes=1
 syslog_ident=mock
 syslog_device=
 
+<% if scope.lookupvar("::rpmbuilder::add_build_tools_repo") == true -%>
+# Build Tools Repo
+[<%=@dist%>-<%=@release%>-<%=@arch%>-build-tools]
+name=<%=@dist%>-<%=@release%>-<%=@arch%>-build-tools
+baseurl=http://pl-build-tools.delivery.puppetlabs.net/yum/<%=@dist%>/<%=@release%>/<%=@arch%>
+# Note: skip_if_unavailable probably won't do what you want: https://bugzilla.redhat.com/show_bug.cgi?id=842031
+skip_if_unavailable=True
+proxy=_none_
+<% end -%>
+
 <% if @dist == "el" and @release == "4" -%>
 # repos
 [groups-<%=@dist%>-<%=@release%>-<%=@arch%>]
