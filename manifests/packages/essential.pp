@@ -26,6 +26,6 @@ class rpmbuilder::packages::essential (
   ]
 
   package { $builder_pkgs:
-    ensure  => latest,
+    ensure  => installed,
   }
 }
