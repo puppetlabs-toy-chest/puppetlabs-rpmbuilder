@@ -1,5 +1,6 @@
 class rpmbuilder::packages::essential (
-  $epel = true
+  $epel = true,
+  $mock_version = installed,
 ) {
   if $epel {
     Package {
@@ -15,7 +16,6 @@ class rpmbuilder::packages::essential (
     'gcc',
     'gnupg2',
     'make',
-    'mock',
     'rpmdevtools',
     'rpm-libs',
     'rubygem-gem2rpm',
@@ -27,5 +27,9 @@ class rpmbuilder::packages::essential (
 
   package { $builder_pkgs:
     ensure  => installed,
+  }
+
+  package { 'mock':
+    ensure => $mock_version,
   }
 }
