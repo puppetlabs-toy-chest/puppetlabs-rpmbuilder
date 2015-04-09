@@ -15,6 +15,7 @@ class rpmbuilder(
   $cleanup_on_failure   = true,
   $cleanup_on_success   = true,
   $add_build_tools_repo = false,
+  $mock_version         = installed,
 ) {
 
   Class['Rpmbuilder::Packages::Essential']->Class['Rpmbuilder::Mock::Puppetlabs_mocks']
@@ -28,7 +29,8 @@ class rpmbuilder(
   }
 
   class { "rpmbuilder::packages::essential":
-    epel  => $add_epel,
+    epel         => $add_epel,
+    mock_version => $mock_version,
   }
 
   if ($use_extra_packages) {
