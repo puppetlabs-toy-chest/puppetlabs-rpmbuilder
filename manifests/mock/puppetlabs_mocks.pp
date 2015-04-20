@@ -1,5 +1,5 @@
 class rpmbuilder::mock::puppetlabs_mocks (
-  $fedora_releases  = ["14","15","16","17","18","19","20","21","22"],
+  $fedora_releases  = ["14","17","20","21","22"],
   $el_releases      = ["5","6","7"],
   $vendor           = undef,
   $proxy            = undef,
