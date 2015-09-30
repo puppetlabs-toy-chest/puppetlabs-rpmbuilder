@@ -3,7 +3,6 @@
 class rpmbuilder::packages::extra {
   $extra_packages = [
     'rubygem-bundler',
-    'bash-completion',
   ]
 
   package { $extra_packages: ensure => present, }
