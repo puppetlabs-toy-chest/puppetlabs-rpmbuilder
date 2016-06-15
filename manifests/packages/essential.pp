@@ -8,7 +8,7 @@ class rpmbuilder::packages::essential (
     }
   }
 
-  $builder_pkgs = [
+  $common_builder_pkgs = [
     'autoconf',
     'automake',
     'createrepo',
@@ -22,8 +22,14 @@ class rpmbuilder::packages::essential (
     'rubygem-rake',
     'yum',
     'yum-utils',
-    'rpm-sign',
   ]
+
+  # this package is only present in "rpm" package before el7
+  if versioncmp($::operatingsystemrelease, '7') >= 0 {
+    $builder_pkgs = concat($common_builder_pkgs, 'rpm-sign')
+  } else {
+    $builder_pkgs = $common_builder_pkgs
+  }
 
   package { $builder_pkgs:
     ensure  => installed,
