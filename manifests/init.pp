@@ -1,6 +1,7 @@
 class rpmbuilder(
   $fedora_releases      = undef,
   $el_releases          = undef,
+  $sles_releases        = undef,
   $vendor               = undef,
   $mock_root            = undef,
   $proxy                = undef,
