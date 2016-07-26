@@ -14,19 +14,32 @@
     tag = "el"
     mirrorlist_os = "http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=os"
     mirrorlist_updates = "http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=updates"
+  elsif @dist == "sles"
+    if @release >= '11' && @arch == 'i386'
+      t_arch = "i586"
+    end
   end
+  t_arch ||= @arch
 %>
 
 config_opts['root'] = '<%=@name%>'
-config_opts['target_arch'] = '<%=@arch%>'
+config_opts['target_arch'] = '<%=t_arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 <% if @dist == "el" and @release == "7" %>
 config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything systemd'
+<% elsif %>
+config_opts['chroot_setup_cmd'] = 'install pwdutils aaa_base autoconf bash buildsys-macros coreutils findutils gawk glibc glibc-devel glibc-locale sles-release rpm rpm-build make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip util-linux'
 <% else %>
 config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 <% end %>
 config_opts['dist'] = '<%=@dist%>'  # only useful for --resultdir variable subst
 config_opts['macros']['%_host_vendor'] = '<%=@vendor%>'
+config_opts['macros']['%vendor'] = '<%=@vendor%>'
+
+<% if @dist == "sles" %>
+config_opts['useradd'] = '/usr/sbin/useradd -o -m -u %(uid)s -g %(gid)s -d %(home)s mockbuild '
+config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
+<% end %>
 
 <% if @dist == "el" %>
 config_opts['macros']['%rhel'] = '<%=@release%>'
@@ -59,7 +72,39 @@ proxy=_none_
 
 # OS Repo
 [<%=@dist%>-<%=@release%>-<%=@arch%>-os]
-name=<%=@dist%>-<%=@release%>-<%=@arch%>-os
+name=<%=@dist%>-<%=@release%>-<%=t_arch%>-os
+<% if @dist == "sles" %>
+enabled=1
+  <% if @release == '10' %>
+baseurl='http://enterprise.delivery.puppetlabs.net/<%=@dist%>/<%=@release%>/<%=t_arch%>/'
+  <% elsif @release == '12'%>
+baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=t_arch%>/RPMS.os'
+  <% else %>
+baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
+  <% end %>
+gpgcheck=0
+skip_if_unavailable=1
+proxy=_none_
+
+<% if @release == "11" %>
+# weird dependencies - (openjdk from SLED [for pe-java], uuid-devel [for pe-postgres])
+[deps-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=<%=@dist%>-<%=@release%>-deps-<%=t_arch%>
+enabled=1
+baseurl=http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-deps-<%=t_arch%>/RPMS.os/
+gpgcheck=0
+skip_if_unavailable=1
+proxy=_none_
+<% end %>
+
+[pe-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=pe-<%=@dist%>-<%=@release%>-<%=@arch%>
+enabled=1
+baseurl='http://enterprise.delivery.puppetlabs.net/<%=@pe_ver%>/repos/<%=@dist%>-<%=@release%>-<%=@arch%>/'
+skip_if_unavailable=1
+proxy=_none_
+
+<% else %>
 mirrorlist=<%=mirrorlist_os%>
 failovermethod=priority
 
@@ -68,6 +113,7 @@ failovermethod=priority
 name=<%=@dist%>-<%=@release%>-<%=@arch%>-updates
 mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
+<% end %>
 
 # Puppetlabs Products
 [puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>]
