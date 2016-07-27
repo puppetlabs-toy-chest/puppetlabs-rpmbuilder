@@ -5,6 +5,7 @@
 # **********************************
 <%
   # Set up internal variables for fedora and centos mirrors, which vary greatly in format.
+  # this is not used for sles, as there are no public mirrors available for sles
   if @dist == "fedora"
     tag = "fc"
     prefix = "f"
@@ -17,16 +18,33 @@
   end
 %>
 
+<%
+  if @dist == "sles" && @arch == "i386"
+    t_arch = 'i586'
+  else
+    t_arch = @arch
+  end
+%>
+
 config_opts['root'] = '<%=@name%>'
-config_opts['target_arch'] = '<%=@arch%>'
+config_opts['target_arch'] = '<%=t_arch%>'
 config_opts['legal_host_arches'] = (<%= if @arch =~ /i\d86/ then "'i386', 'i586', 'i686', 'x86_64'" else "'x86_64'" end %>)
 <% if @dist == "el" and @release == "7" %>
 config_opts['chroot_setup_cmd'] = 'install @buildsys-build redhat-release-everything systemd'
+<% elsif @dist == "sles" %>
+config_opts['chroot_setup_cmd'] = 'install pwdutils aaa_base autoconf bash buildsys-macros coreutils findutils gawk glibc glibc-devel glibc-locale sles-release rpm rpm-build make bzip2 gzip make patch tar cpio gcc gcc-c++ gnupg sed unzip util-linux'
 <% else %>
 config_opts['chroot_setup_cmd'] = 'groupinstall buildsys-build'
 <% end %>
 config_opts['dist'] = '<%=@dist%>'  # only useful for --resultdir variable subst
 config_opts['macros']['%_host_vendor'] = '<%=@vendor%>'
+
+<% if @dist == "sles" %>
+config_opts['plugin_conf']['ccache_enable'] = True
+config_opts['macros']['%vendor'] = '<%=@vendor%>'
+config_opts['macros']['%dist'] = '.<%=@dist%><%=@release%>'
+config_opts['useradd'] = '/usr/sbin/useradd -o -m -u %(uid)s -g %(gid)s -d %(home)s mockbuild '
+<% end %>
 
 <% if @dist == "el" %>
 config_opts['macros']['%rhel'] = '<%=@release%>'
@@ -57,6 +75,23 @@ skip_if_unavailable=True
 proxy=_none_
 <% end -%>
 
+<% if @dist == "sles" %>
+# Sles does not provide public mirrors, so we are forced to host one internally
+# This will not work for anyone outside of the puppetlabs ecosystem
+[os-<%=@dist%>-<%=@release%>-<%=@arch%>]
+name=<%=@dist%>-<%=@release%>-<%=t_arch%>-os
+enabled=1
+<% if @release == '10' %>
+baseurl='http://enterprise.delivery.puppetlabs.net/<%=@dist%>/<%=@release%>/<%=t_arch%>/'
+<% elsif @release == '12' %>
+baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=t_arch%>/RPMS.os'
+<% else %>
+baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=@sp%>-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
+<% end %>
+gpgcheck=0
+skip_if_unavailable=1
+proxy=_none_
+<% else %>
 # OS Repo
 [<%=@dist%>-<%=@release%>-<%=@arch%>-os]
 name=<%=@dist%>-<%=@release%>-<%=@arch%>-os
@@ -68,6 +103,7 @@ failovermethod=priority
 name=<%=@dist%>-<%=@release%>-<%=@arch%>-updates
 mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
+<% end %>
 
 # Puppetlabs Products
 [puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>]
