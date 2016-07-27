@@ -105,7 +105,7 @@ mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
 <% end %>
 
-<% if @dist == "el" && @release <= 7 %>
+<% if @dist == "el" && @release <= "7" %>
 # Puppetlabs Products
 [puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=yum.puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>
