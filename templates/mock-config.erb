@@ -105,6 +105,7 @@ mirrorlist=<%=mirrorlist_updates%>
 failovermethod=priority
 <% end %>
 
+<% if @dist == "el" && @release <= 7 %>
 # Puppetlabs Products
 [puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>]
 name=yum.puppetlabs-products-<%=@dist%>-<%=@release%>-<%=@arch%>
@@ -116,6 +117,7 @@ enabled=1
 name=yum.puppetlabs-dependencies-<%=@dist%>-<%=@release%>-<%=@arch%>
 baseurl=http://yum.puppetlabs.com/<%=@dist%>/<%=prefix%><%=@release%>/dependencies/<%=@arch%>/
 enabled=1
+<% end %>
 
 <% if @dist.downcase == "el" %>
 [epel-<%=@dist%>-<%=@release%>-<%=@arch%>]
