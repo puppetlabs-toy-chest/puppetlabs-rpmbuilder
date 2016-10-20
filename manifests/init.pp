@@ -17,6 +17,7 @@ class rpmbuilder(
   $cleanup_on_success   = true,
   $add_build_tools_repo = false,
   $mock_version         = installed,
+  $mirror_url           = undef,
 ) {
 
   Class['Rpmbuilder::Packages::Essential']->Class['Rpmbuilder::Mock::Puppetlabs_mocks']
@@ -45,6 +46,7 @@ class rpmbuilder(
     proxy             => $proxy,
     mock_root         => $mock_root,
     require           => Package['mock'],
+    mirror_url        => $mirror_url,
   }
 
   if $pe {

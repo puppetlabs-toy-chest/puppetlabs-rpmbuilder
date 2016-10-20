@@ -1,10 +1,11 @@
 define rpmbuilder::mock::create_mock (
-  $dist       = undef,
-  $release    = undef,
-  $proxy      = false,
-  $vendor     = "Puppet User",
-  $arch       = undef,
-  $mock_root  = "/etc/mock",
+  $dist         = undef,
+  $release      = undef,
+  $proxy        = false,
+  $vendor       = "Puppet User",
+  $arch         = undef,
+  $mock_root    = "/etc/mock",
+  $mirror_url   = undef,
 ) {
 
   file { $name:
