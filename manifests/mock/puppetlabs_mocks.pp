@@ -5,26 +5,30 @@ class rpmbuilder::mock::puppetlabs_mocks (
   $vendor           = undef,
   $proxy            = undef,
   $mock_root        = undef,
+  $mirror_url       = false,
 ) {
 
   rpmbuilder::mock::pl_mocks { $fedora_releases:
-    dist      => "fedora",
-    vendor    => $vendor,
-    proxy     => $proxy,
-    mock_root => $mock_root,
+    dist        => "fedora",
+    vendor      => $vendor,
+    proxy       => $proxy,
+    mock_root   => $mock_root,
+    mirror_url  => $mirror_url,
   }
 
   rpmbuilder::mock::pl_mocks { $el_releases:
-    dist      => "el",
-    vendor    => $vendor,
-    proxy     => $proxy,
-    mock_root => $mock_root,
+    dist        => "el",
+    vendor      => $vendor,
+    proxy       => $proxy,
+    mock_root   => $mock_root,
+    mirror_url  => $mirror_url,
   }
 
   rpmbuilder::mock::pl_mocks { $sles_releases:
-    dist      => "sles",
-    vendor    => $vendor,
-    proxy     => $proxy,
-    mock_root => $mock_root,
+    dist        => "sles",
+    vendor      => $vendor,
+    proxy       => $proxy,
+    mock_root   => $mock_root,
+    mirror_url  => $mirror_url,
   }
 }

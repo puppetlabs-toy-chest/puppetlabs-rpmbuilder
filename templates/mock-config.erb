@@ -9,12 +9,25 @@
   if @dist == "fedora"
     tag = "fc"
     prefix = "f"
-    mirrorlist_os = "http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-#{@release}&arch=#{@arch}"
-    mirrorlist_updates = "http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f#{@release}&arch=#{@arch}"
   elsif @dist == "el"
     tag = "el"
-    mirrorlist_os = "http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=os"
-    mirrorlist_updates = "http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=updates"
+  end
+  if @mirror_url
+    if @dist == 'el'
+      plat = 'centos'
+    else
+      plat = @dist
+    end
+    baseurl_os =      "baseurl=#{@mirror_url}/#{plat}-#{@release}-#{@arch}/RPMS.os"
+    baseurl_updates = "baseurl=#{@mirror_url}/#{plat}-#{@release}-#{@arch}/RPMS.updates"
+  else
+    if @dist == "fedora"
+      baseurl_os = "mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-#{@release}&arch=#{@arch}"
+      baseurl_updates = "mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f#{@release}&arch=#{@arch}"
+    elsif @dist == "el"
+      baseurl_os = "mirrorlist=http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=os"
+      baseurl_updates = "mirrorlist=http://mirrorlist.centos.org/?release=#{@release}&arch=#{@arch}&repo=updates"
+    end
   end
 %>
 
@@ -95,13 +108,13 @@ proxy=_none_
 # OS Repo
 [<%=@dist%>-<%=@release%>-<%=@arch%>-os]
 name=<%=@dist%>-<%=@release%>-<%=@arch%>-os
-mirrorlist=<%=mirrorlist_os%>
+<%=baseurl_os%>
 failovermethod=priority
 
 # Updates Repo
 [<%=@dist%>-<%=@release%>-<%=@arch%>-updates]
 name=<%=@dist%>-<%=@release%>-<%=@arch%>-updates
-mirrorlist=<%=mirrorlist_updates%>
+<%=baseurl_updates%>
 failovermethod=priority
 <% end %>
 
