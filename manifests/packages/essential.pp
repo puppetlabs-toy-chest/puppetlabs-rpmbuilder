@@ -11,6 +11,7 @@ class rpmbuilder::packages::essential (
   $common_builder_pkgs = [
     'autoconf',
     'automake',
+    'cmake',
     'createrepo',
     'fedora-packager',
     'gcc',
