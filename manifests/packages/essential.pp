@@ -31,9 +31,7 @@ class rpmbuilder::packages::essential (
     $builder_pkgs = $common_builder_pkgs
   }
 
-  package { $builder_pkgs:
-    ensure  => installed,
-  }
+  ensure_packages($builder_pkgs)
 
   package { 'mock':
     ensure => $mock_version,
