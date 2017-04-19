@@ -97,7 +97,7 @@ enabled=1
 <% if @release == '10' %>
 baseurl='http://enterprise.delivery.puppetlabs.net/<%=@dist%>/<%=@release%>/<%=t_arch%>/'
 <% elsif @release == '12' %>
-baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-<%=t_arch%>/RPMS.os'
+baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-sp2-<%=t_arch%>/RPMS.os'
 <% else %>
 baseurl='http://osmirror.delivery.puppetlabs.net/<%=@dist%>-<%=@release%>-sp1-<%=t_arch%>-latest-<%=t_arch%>/RPMS.os/'
 <% end %>
